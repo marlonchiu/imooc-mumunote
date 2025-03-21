@@ -14,8 +14,15 @@ def hello_world():
 # 注册蓝图
 # from controller.index import index
 # app.register_blueprint(index)
-from controller.index2 import index2
-app.register_blueprint(index2)
+# from controller.index2 import index2
+# app.register_blueprint(index2)
+from controller.index3 import index3
+app.register_blueprint(index3)
+
+# 自定义过滤器
+@app.template_filter('add_double')
+def add_double(value):
+    return value * 2
 
 
 if __name__ == '__main__':

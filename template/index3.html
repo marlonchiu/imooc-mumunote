@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jinja2 参数传递、for循环、ifelse判断</title>
+  </head>
+  <body>
+    <!-- 参数的传递 比如 -->
+    {# 这是jinja2模板引擎中注释的写法{{}}#}
+
+    <p>{{session.get('username')}}，欢迎您！</p>
+    <p>文章的标题：{{article.title}}</p>
+    <p>文章的阅读量：{{article.count}}</p>
+
+    <hr />
+
+    {# jinja2 中的if判断 #} {% if article.count > 1000 %}
+    <p style="color: green">文章的阅读量:1000+</p>
+    {% else %}
+    <p style="color: orange">文章的阅读量:{{article.count}}</p>
+    {% endif %}
+
+    <hr />
+
+    {# jinja2 中的for循环 #} {% for i in range(3) %}
+    <p>当前循环的次数是: {{i+1}}</p>
+    {% endfor %}
+
+    <hr />
+
+    {% set loopCount = article.count / 20 %} {% set intLoopCount = loopCount | int %} {# jinja2 中的for循环 #} {% for i
+    in range(intLoopCount) %}
+    <p>当前循环的次数是: {{i+1}}</p>
+    {% endfor %}
+
+    <hr />
+    <!-- 最常用的过滤器
+safe  html标签转义
+striptags  去掉html标签
+upper  转大写
+title  首字母大写
+lower  转小写
+    -->
+    <div>{{article.content}}</div>
+    <div>{{article.content | safe}}</div>
+    <div>{{article.content | striptags}}</div>
+    <p>{{'hello word' | upper}}</p>
+
+    <hr />
+    <!-- 自定义过滤器 -->
+    <div>自定义过滤器加倍：{{1 | add_double}}</div>
+  </body>
+</html>

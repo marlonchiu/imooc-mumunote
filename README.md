@@ -2,6 +2,13 @@
 
 > [慕课网 | Python Flask 全流程全栈项目实战](https://coding.imooc.com/class/713.html)
 
+## 参考文档
+
+> [关于 Flask](https://flask.palletsprojects.com/en/stable/)
+
+> [关于 Jinja2](https://docs.jinkan.org/docs/jinja2/)
+
+
 ## 创建虚拟环境
 
 ```bash
