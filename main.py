@@ -26,6 +26,12 @@ app.register_blueprint(index4)
 def add_double(value):
     return value * 2
 
+# 全局函数
+def global_sum(a,b):
+    return a+b
+app.jinja_env.globals['global_sum'] = global_sum
+# app.jinja_env.globals.update(global_sum=global_sum)
+
 
 if __name__ == '__main__':
     # app.run()
