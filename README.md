@@ -8,6 +8,8 @@
 
 > [关于 Jinja2](https://docs.jinkan.org/docs/jinja2/)
 
+> [PyMySQL](https://pypi.org/project/PyMySQL/)
+
 
 ## 创建虚拟环境
 
@@ -33,3 +35,7 @@ pip install virtualenvwrapper-win
 
 1、创建命令: `pip freeze > requirements.txt`
 2、导入环境命令: `pip install -r ./requirements.txt`
+
+
+## 安装虚拟机和操作系统及工具
+VirtualBox 、Ububtu server、xshell、mysql、Navicat
