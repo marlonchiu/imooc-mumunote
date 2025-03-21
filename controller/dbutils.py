@@ -8,7 +8,8 @@ conn = pymysql.connect(
   user="admin1",
   password="123",
   database="mumushouji",
-  charset="utf8"
+  charset="utf8",
+  cursorclass=pymysql.cursors.DictCursor
 )
 
 # 执行sql语句
