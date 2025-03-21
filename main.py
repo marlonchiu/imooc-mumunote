@@ -12,8 +12,10 @@ def hello_world():
     return 'Hello Flask!'
 
 # 注册蓝图
-from controller.index import index
-app.register_blueprint(index)
+# from controller.index import index
+# app.register_blueprint(index)
+from controller.index2 import index2
+app.register_blueprint(index2)
 
 
 if __name__ == '__main__':
