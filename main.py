@@ -2,7 +2,7 @@
 from flask import Flask, request, session
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="template")
 
 # 设置secret key用于session加密
 app.config['SECRET_KEY'] = os.urandom(24)  # 生成随机密钥

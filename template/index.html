@@ -1,0 +1,47 @@
+<!-- 实现一个定时器跳转到百度的页面 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      span {
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        background-color: black;
+        text-align: center;
+        line-height: 200px;
+        color: white;
+        font-size: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <button>点击跳转到百度</button>
+    <span>5</span>
+    <script>
+      const myBtn = document.querySelector('button')
+      const myBlock = document.querySelector('span')
+
+      // 1. 手动跳转
+      myBtn.onclick = function () {
+        window.location.href = 'https://www.baidu.com'
+      }
+
+      // 倒计时5 秒自动跳转
+      // var timer = 5
+      var timer = {{timer}}
+      setInterval(function () {
+        if (timer <= 0) {
+          window.location.href = 'https://www.baidu.com'
+        } else {
+          myBlock.innerHTML = timer
+          timer--
+        }
+      }, 1000)
+    </script>
+  </body>
+</html>
