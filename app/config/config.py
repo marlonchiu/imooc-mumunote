@@ -6,11 +6,13 @@ class Config(object):
 class TestConfig(Config):
     # db_url = ""
     if_echo=True
+    LOG_LEVEL="DEBUG"
 
 class ProductionConfig(Config):
     if_echo=False
+    LOG_LEVEL = "INFO"
 
 config = {
     "test": TestConfig,
-    "prop": ProductionConfig
+    "prod": ProductionConfig
 }
