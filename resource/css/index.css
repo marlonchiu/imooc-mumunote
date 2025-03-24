@@ -1,0 +1,264 @@
+/* 头部的样式 */
+.header {
+	height: 65px;
+	border-bottom: 1px solid #f3f5f6;
+	background-color: #fff;
+	position: sticky;
+	top: 0;
+}
+.header-container {
+	width: 1155px;
+	/* border: 1px solid red; */
+	margin: 0 auto;
+	height: 65px;
+	line-height: 65px;
+}
+.header-left span {
+	margin-right: 20px;
+}
+.header-left span a:hover {
+	color: #1c1f21;
+}
+.header-left span:nth-child(4) {
+	display: inline-block;
+	position: relative;
+	width: 65px;
+	height: 25px;
+	line-height: 25px;
+}
+.header-left span:nth-child(8) {
+	display: inline-block;
+	position: relative;
+	width: 80px;
+	height: 25px;
+	line-height: 25px;
+}
+
+.header-left span img {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 10px;
+}
+.header-right>span {
+	margin-left: 15px;
+}
+
+.header-right>span>i {
+	font-size: 18px;
+}
+.header-right>span>i:hover {
+	color: red;
+	cursor: pointer;
+}
+.login a:hover {
+	color: red;
+}
+/* 我是子头部的样式 */
+.sub-header {
+	height: 80px;
+	background-color: #fff;
+}
+.sub-header-container {
+	/* border: 1px solid red; */
+	width: 1155px;
+	margin: 0 auto;
+	height: 80px;
+	line-height: 80px;
+}
+
+.sub-header-left img:first-child {
+	height: 54px;
+}
+.sub-header-left img:last-child {
+	height: 19px;
+	margin-bottom: -14px;
+}
+.sub-header-right {
+	margin-top: 25px;
+	width: 880px;
+	padding-left: 470px;
+}
+
+.sub-header-right input{
+	border: 1px solid #dddee0;
+	width: 280px;
+	height: 35px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	color: #9199a1;
+	font-size: 12px;
+	padding: 8px 16px;
+}
+.sub-header-right>span {
+	display: inline-block;
+	background-color: #545c63;
+	height: 35px;
+	width: 35px;
+	line-height: 35px;
+	margin-right: 15px;
+	text-align: center;
+	color: #fff;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.sub-header-right>span:hover{
+	cursor: pointer;
+}
+.sub-header-right button {
+	height: 35px;
+	line-height: 35px;
+	width: 80px;
+	background-color: #3377ff;
+	border: 0;
+	color: #fff;
+	border-radius: 5px;
+}
+.sub-header-right button:hover {
+	cursor: pointer;
+}
+
+/* 我是文章内容部分的样式 */
+.article-container {
+	width: 1155px;
+	margin: 20px auto;
+	/* border: 1px solid red; */
+}
+.left-menu {
+	width: 105px;
+	height: 350px;
+	background-color: #fff;
+	border-radius: 10px;
+}
+.left-menu>div {
+	width: 90px;
+	height: 40px;
+	text-align: center;
+	margin-top: 10px;
+	margin-left: 8px;
+	line-height: 40px;
+}
+
+.left-menu .selected {
+	background-color: #eaf1ff;
+	border-radius: 5px;
+}
+.left-menu .selected a {
+	color: #3377ff;
+	font-weight: 700;
+}
+.left-menu>div>a {
+	font-size: 14px;
+}
+
+.left-menu>div>a:hover {
+	color: #33a4ff;
+}
+
+
+.article-warpper {
+	width: 1025px;
+	background-color: #fff;
+	margin-left: 20px;
+	border-radius: 10px;
+	/* height: 1500px; */
+}
+
+.article-inner {
+	margin: 20px 20px;
+}
+.article-row {
+	/* border: 1px solid red; */
+	height: 80px;
+
+}
+
+.article-row>div{
+	display: inline-block;
+}
+
+.article-header-image img{
+	width: 66px;
+	height: 66px;
+	border-radius: 5px;
+}
+.article-name {
+	height: 36px;
+	line-height: 36px;
+	font-weight: 700;
+	color: #1c1f21;
+}
+
+.article-name:hover {
+	color: #3377ff;
+	cursor: pointer;
+}
+
+.article-name a {
+	height: 36px;
+	line-height: 36px;
+	font-weight: 700;
+	color: #1c1f21;
+}
+
+.article-name a:hover {
+	color: #3377ff;
+	cursor: pointer;
+}
+.article-desc {
+	margin-left: 15px;
+	width: 900px;
+	height: 75px;
+	line-height: 75px;
+	border-bottom: 1px solid #e8e8e8;
+
+}
+.article-info {
+	/* border:  1px solid red; */
+	height: 36px;
+	line-height: 36px;
+}
+.article-left span {
+	display: inline-block;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	font-size: 12px;
+	margin-right: 20px;
+}
+.article-left span:nth-child(2)::before {
+	content: "\e8bf";
+}
+.article-left span:first-child {
+	color: #1c1f21;
+	background: rgba(84,92,99,0.1);
+	width: 75px;
+	border-radius: 13px;
+}
+.article-left span:nth-child(n+2) {
+	color: #9199a1;
+	font-size: 12px;
+}
+.article-right {
+	color: #9199a1;
+	font-size: 12px;
+}
+
+/* 下拉加载更多的样式 */
+.load-more {
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	color: #9199a1;
+	font-size: 12px;
+}
+
+.login a img{
+	height: 35px;
+	border-radius: 50%;
+	border: 2px solid #f3f5f6;
+}
+.login a img:hover{
+	border:2px solid #f01616;
+}

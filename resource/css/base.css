@@ -1,0 +1,64 @@
+* {
+	margin: 0;
+	padding: 0;
+	/* css3的盒子模型 */
+	box-sizing: border-box;
+}
+em,
+i {
+	font-style: none;
+}
+
+li {
+	list-style-type: none;
+}
+
+img {
+	border: 0;
+	vertical-align: middle;
+}
+
+a {
+	color: #545C63;
+	text-decoration: none;
+}
+
+input {
+	border: 0;
+	outline: none;
+}
+
+html,
+body {
+	background-color: #f3f5f6;
+	font-size: 16px;
+}
+
+
+.clearfix:after			   {				content: "";				display: block;				height: 0;				clear: both;				visibility: hidden;			}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+
+
+/* @font-face {
+  font-family: 'iconfont';
+  src: url('../../../font/iconfont.ttf?t=1680263401838') format('truetype');
+} */
+
+@font-face {
+  font-family: 'iconfont';
+  src: url('/font/iconfont.woff2?t=1683105399944') format('woff2'),
+       url('/font/iconfont.woff?t=1683105399944') format('woff'),
+       url('/font/iconfont.ttf?t=1683105399944') format('truetype');
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

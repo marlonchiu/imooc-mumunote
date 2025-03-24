@@ -1,0 +1,144 @@
+.person-center-header{
+	height: 150px;
+	background: url("/images/personal_background.png") no-repeat center top;
+}
+.user-info {
+	width: 1154px;
+	margin: 0 auto;
+	}
+.user-picture {
+	margin-top: 25px;
+}
+
+.user-picture img{
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	border: 2px solid white;
+}
+.personal-name {
+	font-size: 24px;
+	color: white;
+	margin-top: 50px;
+	margin-left: 20px;
+	font-weight: 700;
+}
+body{
+	background-color: #fff !important;
+}
+.personal-main {
+	margin-top: 50px;
+}
+.personal-content {
+	width: 1154px;
+	margin: 0 auto;
+}
+
+/* css原生绘制三角形 */
+
+/* .every-menu {
+	width: 0;
+	height: 0; 
+	border-top: 30px solid blue;
+	border-bottom: 20px solid yellow;
+	border-left: 30px solid red;
+	border-right: 30px solid green;
+} */
+
+.menu>div{
+	height: 48px;
+	line-height: 48px;
+	width: 145px;
+	text-align: center;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+.menu .active{
+	background-color: #f34343;
+	font-weight: 700;
+}
+.menu .active a{
+	color: white;
+	position: relative;
+}
+.menu .every-menu{
+	
+}
+
+.menu .active a::after{
+	position: absolute;
+	content: "";
+	border-top: 24px solid white;
+	border-bottom: 24px solid white;
+	border-left: 15px solid #f34343;
+	border-right: 24px solid white;
+	margin-left: 20px;
+}
+.content {
+	margin-left: 50px;
+}
+.menu>div span:nth-child(2){
+	margin-left: 8px;
+}
+html {
+	background-color: #fff;
+}
+
+.content {
+	width: 940px;
+}
+.every-item {
+	border-bottom: 1px solid #edf1f2;
+}
+
+.no-item{
+	height: 300px;
+	line-height: 330px;
+	text-align: center;
+	font-size: 18px;
+	color:#b5b9bc;
+}
+.no-item a{
+	color: #f01400;
+	font-weight: 700;
+}
+.item-title {
+	margin: 15px 0;
+}
+.item-title a{
+	color: #14191e;
+	font-size: 20px;
+	font-weight: 700;
+	margin: 25px 0;
+}
+.item-title a:hover{
+	color: #f01400;
+}
+.item-title span{
+	border:1px solid #71777d;
+	color: #71777d;
+	font-size: 12px;
+	padding: 5px 10px;
+}
+.item-image img{
+	width: 210px;
+	height: 130px;
+}
+.item-text {
+	height: 130px;
+	width: 700px;
+	color: #4d555d;
+	font-size: 14px;
+	margin-left: 30px;
+	line-height: 25px;
+}
+.item-info {
+	color: #b5b9bc;
+	font-size: 14px;
+	padding-bottom: 15px;
+	text-align: right;
+	
+}
+.item-info span{
+	margin-left: 10px;
+}

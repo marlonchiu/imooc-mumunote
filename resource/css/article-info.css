@@ -1,0 +1,444 @@
+.article-main {
+	background-color: #f8fafc;
+}
+.article-container {
+	width: 1155px;
+	margin: 0 auto;
+	height: 60px;
+	line-height: 60px;
+}
+.article-path {
+	font-size: 14px;
+}
+
+.article-container-main {
+	width: 1155px;
+	margin: 0 auto;
+	/* border:1px solid red; */
+}
+.article-container-main .left{
+	
+	display: inline-block;
+	width: 800px;
+	/* border:1px solid red; */
+	border-radius: 10px;
+	background-color: #fff;
+	padding-left: 40px;
+	padding-right:40px;
+}
+
+.article-container-main .right{
+	display: inline-block;
+	width: 330px;
+	/* border:1px solid red;'' */
+	margin-left: 23px;
+
+	
+}
+
+.article-title {
+	margin-top: 55px;
+	font-size: 32px;
+	font-weight: 700;
+}
+
+/* 标签 */
+.note-article-info {
+	margin-top: 25px;
+}
+
+.note-left {
+}
+.note-left .tag-name{
+	height: 30px;
+	line-height: 30px;
+	color: #9199a1;
+	font-size: 12px;
+}
+.note-left .tag-value{
+	color: #6699ff;
+	background-color: #f5f8ff;
+	border: 1px solid #e9f0ff;
+	font-size: 12px;
+	border-radius: 15px;
+	padding: 8px 5px;
+}
+.note-right {
+	width: 60px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #3377ff;
+	color: #fff;
+	text-align: center;
+	margin-right: 40px;
+	border-radius: 20px;
+	font-size: 12px;
+}
+.note-right:hover {
+	cursor: pointer;
+}
+
+.article-content-warp {
+	margin-top: 55px;
+}
+/* 修复文章内容图片过大的问题 */
+.article-content-warp img{
+	width: 100%;
+}
+
+.article-container-main .right .top {
+	background-color: #fff;
+	border-radius: 10px;
+}
+
+
+/* 右侧的头像 */
+.author-image img{
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	margin: 20px;
+}
+/* 右侧的作者信息 */
+.author-info {
+	margin-top: 20px;
+	background-color: #fff;
+}
+
+.author-info .author-name{
+	font-weight: 700;
+}
+
+.author-info .author-job{
+	margin-top: 15px;
+	color: #5c5463;
+	font-size: 12px;
+}
+
+
+.article-container-main .right .bottom {
+	margin-top: 25px;
+	background-color: #fff;
+	border-radius: 10px;
+}
+
+/* 相关文章推荐的样式 */
+.about-article {
+	display: inline-block;
+	margin: 25px;
+	font-weight: 700;
+}
+
+/* @font-face {
+  font-family: 'iconfont';
+  src: url('/font/iconfont.woff2?t=1682690394456') format('woff2'),
+       url('/font/iconfont.woff?t=1682690394456') format('woff'),
+       url('/font/iconfont.ttf?t=1682690394456') format('truetype');
+} 
+ */
+/* @font-face {
+  font-family: 'iconfont';
+  src: url('/font/iconfont.woff2?t=1682700384068') format('woff2'),
+       url('/font/iconfont.woff?t=1682700384068') format('woff'),
+       url('/font/iconfont.ttf?t=1682700384068') format('truetype');
+} */
+@font-face {
+  font-family: 'iconfont';
+  src: url('/font/iconfont.woff2?t=1683105399944') format('woff2'),
+       url('/font/iconfont.woff?t=1683105399944') format('woff'),
+       url('/font/iconfont.ttf?t=1683105399944') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.about-article-info {
+	margin-left: 25px;
+}
+.about-article-info div:nth-child(n+2) {
+	border-top: 1px solid #e9eaeb;
+}
+.article-info-row {
+	padding-top: 15px;
+	margin-bottom: 15px;
+}
+
+.article-info-row a {
+	color: #545c63;
+	font-size: 14px;
+}
+.article-info-row a:hover {
+	color: #3377ff;
+}
+/* 文章详情下边的创建时间以及浏览人数 */
+.article-create-time {
+	margin-top: 40px;
+	font-size: 14px;
+}
+.imooc {
+	font-size: 14px;
+	color: #9199a1;
+	margin-top: 20px;
+}
+
+.praise {
+	margin: 30px auto;
+	height: 75px;
+	width: 75px;
+	border-radius: 50%;
+	background: rgba(255,170,0,.1);
+	line-height: 75px;
+	text-align: center;
+}
+.praise:hover{
+	background-color: #ffaa00;
+}
+
+.praise span{
+	font-size: 45px;
+	color: #ffaa00;
+}
+.praise span:hover{
+	color: #fff;
+	cursor: pointer;
+	
+}
+
+/* 评论的样式 */
+.feedback-num {
+	width: 1152px;
+	margin: 0 auto;
+	margin-top: 30px;
+	font-weight: 700;
+}
+.article-feedback {
+	width: 1152px;
+	margin: 0 auto;
+}
+.feedback-wrap {
+	display: inline-block;
+	background-color: #fff;
+	width: 800px;
+	border-radius: 10px;
+	margin-top: 25px;
+	padding-left: 30px;
+	padding-top: 30px;
+}
+
+.useless-right {
+	display: inline-block;
+	width: 330px;
+	/* border:1px solid red;'' */
+	margin-left: 23px;
+}
+
+.write-feedback-wrap >div {
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	font-weight: 700;
+}
+.write-feedback-wrap > span{
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	width: 530px;
+	background-color: #f3f5f6;
+	color:#9e99a1;
+	border-radius: 10px;
+	margin-left: 30px;
+	padding-left: 20px;
+}
+
+
+.feedback-author>a>img {
+	display: block;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	opacity: 0.8;
+}
+
+.feedback-author>a>img:hover {
+	opacity: 1;
+}
+.feedback-author>a>span{
+	display: block;
+	width: 50px;
+	text-align: center;
+	color: #b7bbbf;
+	font-size: 12px;
+}
+.feedback-content {
+	margin-left: 20px;
+}
+.feedback-content>a{
+	display: block;
+	font-size: 14px;
+}
+.feedback-content>span{
+	display: block;
+	margin: 15px 0px;
+}
+.feedback-detail {
+	margin-top: 20px;
+	padding-top: 30px;
+	border-top: 1px solid #ebebec;
+	width: 740px;
+}
+/* 点赞的那个字体 */
+.feedback-content{
+	width: 80%;
+}
+
+.feedback-content-footer>span{
+	display: inline-block;
+	width: 50px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 20px;
+	background-color: #ededee;
+	border-radius: 15px;
+}
+.reply-button {
+	display: inline-block;
+	color: #9199a1;
+	font-size: 12px;
+	margin-left: 25px;
+	height: 30px;
+	line-height: 30px;
+}
+.publish-time {
+	display: inline-block;
+	color: #9199a1;
+	font-size: 12px;
+	height: 30px;
+	line-height: 30px;
+}
+
+
+.reply-box {
+	margin-left: 70px;
+	margin-top: 30px;
+}
+.feedback-reply-content {
+	margin-left: 15px;
+}
+
+.feedback-reply-content>a {
+	color: #07111b;
+	font-size: 14px;
+	font-weight: 700;
+}
+.reply-text {
+	color: #939994;
+	font-size: 14px;
+}
+.reply2-button {
+	display: inline-block;
+	color: #9199a1;
+	font-size: 12px;
+	height: 30px;
+	line-height: 30px;
+}
+.feedback-reply-content>a{
+	font-size: 14px;
+}
+
+.feedback-reply-content {
+	width: 75%;
+}
+
+/* 没有评论数据的样式 */
+.no-data {
+	margin: 0 auto;
+	margin-top: 30px;
+}
+.no-data-line {
+	height: 65px;
+	width: 760px;
+	text-align: center;
+	border-top: 1px solid #ebebec;
+	padding-top: 10px;
+}
+.no-data-line>span {
+}
+
+/* 发布评论的模态框样式 */
+.feedback-modal-wrap .modal-content{
+	width: 700px;
+	margin-left: -200px;
+}
+
+.feedback-modal-wrap .modal-dialog{
+	padding-top: 200px;
+}
+.feedback-modal-wrap .modal-title{
+	padding-left: 30px;
+	color: black;
+}
+
+/* 回复评论的评论的样式 */
+.write-author-feedback {
+	margin-top: 30px;
+}
+
+
+.write-author-feedback img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+.write-author-feedback textarea{
+	border: 1px solid #d9dde1;
+	width: 450px;
+	height: 80px;
+	border-radius: 5px;
+	vertical-align: top;
+	margin-left: 30px;
+	padding-top: 10px;
+	padding-left: 15px;
+	resize: none;
+}
+
+.write-author-feedback textarea:focus{
+	outline: none;
+	border: 1px solid #d9dde1;
+}
+
+.author-feedback-button {
+	width: 520px;
+	text-align: right;
+	margin-top: 10px;
+}
+.author-feedback-button button{
+	width: 60px;
+	height: 40px;
+	border-radius: 25px;
+	font-size: 14px;
+}
+.cancel-author-feedback{
+	border: 1px solid #93999f;
+	background-color: #fff;
+	color: #93999f;
+	
+}
+.cancel-author-feedback:hover{
+	border: 1px solid #a6abb0;
+	background-color: #fff;
+	color: #4d555d;
+	
+}
+
+
+.confirm-author-feedback{
+	background-color: #3377ff;
+	border: 1px solid #3377ff;
+	color: #fff;
+}

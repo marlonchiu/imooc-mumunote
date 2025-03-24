@@ -1,0 +1,51 @@
+.modal-dialog {
+	width: 420px;
+}
+.modal-title {
+	color: red;
+	padding-left: 40%;
+	font-weight: 700;
+}
+.mb-3 input {
+	background-color: #f0f0f0;
+}
+.modal-body {
+	margin: 0 auto;
+}
+.modal-body form {
+	width: 350px;
+}
+.auth-code {
+	display: inline-block;
+	width: 265px;
+	height: 38px;
+	border-radius: 5px;
+	padding-left: 10px;
+	border:1px solid #dee2e6;
+}
+.login-button {
+	background-color: red;
+	width: 350px;
+	border: 1px solid transparent;
+	border-radius: 20px;
+}
+
+/* 下边是注册的样式 */
+.send {
+	width: 80px;
+	height: 35px;
+	border: 1px solid #48615b;
+	color: #48615b;
+	border-radius: 5px;
+}
+
+.register {
+	color: red;
+	font-weight: 700;
+	width: 418px;
+	text-align: center;
+	
+}
+.register:hover {
+	cursor: pointer;
+}
