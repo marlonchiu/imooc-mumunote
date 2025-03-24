@@ -12,7 +12,6 @@
 
 > [PyMySQL](https://pypi.org/project/PyMySQL/)
 
-
 ## 创建虚拟环境
 
 ```bash
@@ -38,6 +37,13 @@ pip install virtualenvwrapper-win
 1、创建命令: `pip freeze > requirements.txt`
 2、导入环境命令: `pip install -r ./requirements.txt`
 
-
 ## 安装虚拟机和操作系统及工具
+
 VirtualBox 、Ububtu server、xshell、mysql、Navicat
+
+## 什么是 SQLAlchemy  框架?
+
+- SQLAlchemy 是 Python 编程语言下的一款开源软件。
+- SQLAlchemy 提供了 SQL 工具包及对象关系映射(ORM)工具
+- 为高效和高性能的数据库访问而设计，实现了完整的企业级持久模型
+- 安装 SQLAlchemy 命令: `pip install SQLAlchemy`
