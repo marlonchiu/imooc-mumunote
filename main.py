@@ -22,8 +22,10 @@ def hello_world():
 # app.register_blueprint(index4)
 # from controller.index5 import index5
 # app.register_blueprint(index5)
-from controller.index6 import index6
-app.register_blueprint(index6)
+# from controller.index6 import index6
+# app.register_blueprint(index6)
+from controller.my_orm1 import my_orm1
+app.register_blueprint(my_orm1)
 
 # 自定义过滤器
 @app.template_filter('add_double')

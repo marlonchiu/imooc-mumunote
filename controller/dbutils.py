@@ -13,7 +13,7 @@ conn = pymysql.connect(
 )
 
 # 执行sql语句
-sql ="select *from user"
+sql = "select * from user"
 
 # 实例化一个游标对象
 cursor = conn.cursor()

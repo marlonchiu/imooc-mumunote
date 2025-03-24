@@ -2,6 +2,8 @@
 
 > [慕课网 | Python Flask 全流程全栈项目实战](https://coding.imooc.com/class/713.html)
 
+> [Youtube | Python Flask 全流程全栈项目实战](https://www.youtube.com/playlist?list=PLULgBZmS3YWS_QqAyw34MrmMOuZIjYubb)
+
 ## 参考文档
 
 > [关于 Flask](https://flask.palletsprojects.com/en/stable/)
