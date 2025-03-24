@@ -34,7 +34,7 @@ class User(Base):
 # 设置secret key用于session加密
 app.config['SECRET_KEY'] = os.urandom(24)  # 生成随机密钥
 
-@app.route('/', methods=[ 'POST'])
+@app.route('/login', methods=[ 'POST'])
 def login():
     # result = db_session.query(User).all()
     # # print(result)
