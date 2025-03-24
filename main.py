@@ -26,8 +26,8 @@ def hello_world():
 # app.register_blueprint(index6)
 # from controller.my_orm1 import my_orm1
 # app.register_blueprint(my_orm1)
-from controller.my_sqlalchemy import my_sqlalchemy
-app.register_blueprint(my_sqlalchemy)
+# from controller.my_sqlalchemy import my_sqlalchemy
+# app.register_blueprint(my_sqlalchemy)
 
 # 自定义过滤器
 @app.template_filter('add_double')
