@@ -1,4 +1,4 @@
-from sqlalchemy import Table
+from sqlalchemy import Table, or_
 from common.database import db_connect
 from app.config.config import config
 from app.settings import env
@@ -32,4 +32,21 @@ class Article(Base):
             ).order_by(
                 Article.browse_num.desc()
             ).limit(count).all()
+        return result
+    __table__ = Table("article", Base.metadata, autoload_with=engine)
+
+    # 搜索按钮查询文章
+    def search_article(self, page, keyword):
+        if int(page) < 1:
+            page = 1
+        count = int(page) * config[env].page_count
+
+        result = db_session.query(Article, User.nickname).join(
+            User, User.user_id == Article.user_id
+        ).filter(
+          or_(Article.title.like("%"+keyword+"%"),
+              Article.article_content.like("%"+keyword+"%"))
+        ).order_by(
+            Article.browse_num.desc()
+        ).limit(count).all()
         return result

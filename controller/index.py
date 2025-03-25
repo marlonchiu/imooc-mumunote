@@ -34,7 +34,13 @@ def home():
 
     #  到数据库中查询文章数据，然后返回给前端页面
     article = Article()
-    db_result = article.find_article(page, article_type)
+
+    # 文章搜索功能实现
+    search_keyword = request.args.get("keyword")
+    if search_keyword is not None:
+      db_result = article.search_article(page, search_keyword)
+    else:
+      db_result = article.find_article(page, article_type)
 
     for article, nickname in db_result:
       # 分类内容显示的转换

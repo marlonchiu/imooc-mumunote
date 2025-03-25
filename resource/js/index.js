@@ -32,11 +32,11 @@ function getUrlParams() {
       }
     }
 
-    // if (uri.includes('keyword') && !uri.includes('page')) {
-    //   final_result['page'] = 1
-    //   final_result['start_num'] = 0
-    //   final_result['end_num'] = 10
-    // }
+    if (uri.includes('keyword') && !uri.includes('page')) {
+      final_result['page'] = 1
+      final_result['start_num'] = 0
+      final_result['end_num'] = 10
+    }
   }
   return final_result
 }
