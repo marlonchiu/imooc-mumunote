@@ -31,7 +31,7 @@ function sendEmailVCode() {
       console.log(res)
       alert('向后端发送验证码成功')
       // 设置倒计时 一般是60秒
-      times = 5
+      times = 60
       countDown(sendEmailButton, times)
     })
 }
