@@ -51,52 +51,51 @@ function countDown(sendEmailButton, times) {
   }
 }
 
-// //  用户注册实现
-// function userReg(){
-// 	// 获取邮箱
-// 	var targetEmail = document.querySelector("#reg-username").value;
-//
-// 	// 也可以进行邮箱格式的验证
-// 	if (!targetEmail.match(".+@.+\..+")){
-// 		alert("邮箱格式错误");
-// 		document.querySelector("#reg-username").focus();
-// 		return false;
-// 	}
-//
-// 	// 比对两次密码是否一致
-// 	var firstPassword = document.querySelector("#reg-password").value;
-// 	var secondPassword = document.querySelector("#reg-password1").value;
-// 	if(firstPassword != secondPassword){
-// 		alert("两次输入的密码不一致")
-// 		document.querySelector("#reg-password").focus();
-// 		return false;
-// 	}
-//
-// 	//  开始执行用户注册
-// 	// 获取用户输入的验证码
-// 	var emailVCode = document.querySelector("#email-vcode").value;
-//
-// 	axios.post("/reg",{
-// 		username:targetEmail,
-// 		password:firstPassword,
-// 		second_password:secondPassword,
-// 		ecode:emailVCode
-// 	}).then((res)=>{
-// 		// res.data就是后端返回json
-// 		// console.log(res.data)
-// 		if(res.data.status==1000){
-// 			alert(res.data.data);
-// 			// 注册成功后要做做一个页面跳转，转到首页
-// 			location.href="/"
-// 		}else{
-// 			alert(res.data.data);
-// 		}
-// 	})
-//
-//
-// }
-//
-//
+//  用户注册实现
+function userReg() {
+  // 获取邮箱
+  var targetEmail = document.querySelector('#reg-username').value
+
+  // 也可以进行邮箱格式的验证
+  if (!targetEmail.match('.+@.+..+')) {
+    alert('邮箱格式错误')
+    document.querySelector('#reg-username').focus()
+    return false
+  }
+
+  // 比对两次密码是否一致
+  var firstPassword = document.querySelector('#reg-password').value
+  var secondPassword = document.querySelector('#reg-password1').value
+  if (firstPassword != secondPassword) {
+    alert('两次输入的密码不一致')
+    document.querySelector('#reg-password').focus()
+    return false
+  }
+
+  //  开始执行用户注册
+  // 获取用户输入的验证码
+  var emailVCode = document.querySelector('#email-vcode').value
+
+  axios
+    .post('/register', {
+      username: targetEmail,
+      password: firstPassword,
+      second_password: secondPassword,
+      ecode: emailVCode
+    })
+    .then((res) => {
+      // res.data就是后端返回json
+      // console.log(res.data)
+      if (res.data.status == 1000) {
+        alert(res.data.data)
+        // 注册成功后要做做一个页面跳转，转到首页
+        location.href = '/'
+      } else {
+        alert(res.data.data)
+      }
+    })
+}
+
 // // 登录功能实现
 // function doLogin(){
 // 	var username = document.querySelector("#username").value;
