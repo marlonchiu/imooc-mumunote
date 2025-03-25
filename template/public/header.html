@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="css/login.css">
 		<script type="text/javascript" src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
 		<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
-			<script type="text/javascript" src="/js/axios.min.js"></script>
+    <script type="text/javascript" src="/js/axios.min.js"></script>
 		<script type="text/javascript" src="/js/header.js"></script>
 
 	</head>
@@ -35,15 +35,15 @@
 				</div>
 				<div class="header-right fr">
 					<span>
-						<i class="iconfont">&#xe60d;</i>
+						<i class="iconfont">&#xeafe;</i>
 					</span>
 					<span>
-						<i class="iconfont">&#xe73c;</i>
+						<i class="iconfont">&#xe613;</i>
 					</span>
-					
+
 					<span class="login">
 						{% if session.get('is_login') == 'true' %}
-						
+
 						<a href="/personal">欢迎{{session.get('nickname')}}</a>
 						<a href="/personal"><img src="{{session.get('picture')}}" alt=""></a>
 						<a href="/logout">注销</a>
@@ -57,7 +57,7 @@
 				</div>
 			</div>
 			</div>
-			
+
 			<!-- 这个是登录的模态框 -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog">
@@ -78,13 +78,13 @@
 						  <img src="/vcode" alt="" onclick="this.src='/vcode?'+Math.random()" class="auto-code-image">
 					  	  <input type="text" class="auth-code" id="auth-code" placeholder="请输入验证码">
 					  </div>
-					  
+
 					  <button type="button" class="btn btn-primary login-button" onclick="doLogin()">登录</button>
 			        </form>
 			      </div>
 			      <div class="modal-footer">
 					  <span class="register" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#regModal">注册</span>
-					<!--  
+					<!--
 			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 			        <button type="button" class="btn btn-primary">Send message</button>
 			      -->
@@ -92,9 +92,8 @@
 			    </div>
 			  </div>
 			</div>
-			
+
 			<!-- 这是注册的模态框 -->
-			
 			<div class="modal fade" id="regModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog">
 			    <div class="modal-content">
@@ -117,13 +116,13 @@
 					  	  <input type="text" class="auth-code" id="email-vcode" placeholder="请输入验证码">
 						  <button class="send" id="send-email-vcode" onclick="sendEmailVCode()">发送</button>
 					  </div>
-					  
+
 					  <button type="button" class="btn btn-primary login-button" onclick="userReg()">注册</button>
 			        </form>
 			      </div>
 			      <div class="modal-footer">
 					  <span class="register" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#exampleModal">登录</span>
-			    <!--    
+			    <!--
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 			        <button type="button" class="btn btn-primary">Send message</button>
 			      -->
@@ -131,6 +130,6 @@
 			    </div>
 			  </div>
 			</div>
-				
+
     {% block content %}
   {% endblock %}
