@@ -47,8 +47,17 @@ def home():
       article.article_image = config[env].article_header_image_path + str(article.article_image)
 
       # 文章标签格式的修改
-      article.article_tag = article.article_tag.replace(","," · ")
+      article.article_tag = article.article_tag.replace(",", " · ")
+
+    # 分页的逻辑处理
+    print('_________________________', len(db_result))
+    start_num = request.args.get("start_num")
+    if start_num is None:
+        start_num = 0
+    end_num = len(db_result)
 
     return render_template("index.html",
                           result=db_result,
+                          start_num=start_num,
+                          end_num=end_num,
                           label_types=label_types)
