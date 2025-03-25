@@ -12,6 +12,9 @@ class Config(object):
     email_name = '93513472@qq.com'  # 发送方邮箱
     email_passwd = 'hsceydswmritbdhb'  # 填入发送方邮箱的授权码
 
+    # 配置头像存储路径
+    user_header_image_path = "/images/headers/"
+
 # 测试环境
 class TestConfig(Config):
     # db_url = ""

@@ -3,6 +3,8 @@ import json
 import re
 from flask import Blueprint, make_response, session, request
 
+from app.config.config import config
+from app.settings import env
 from common import response_message
 from common.email_utils import gen_email_code, send_email
 from model.user import User
@@ -29,7 +31,6 @@ def vcode():
 
   return response
 
-
 @user.route("/ecode",methods=["post"])
 def email_code():
   # email = request.form.get("email")
@@ -51,7 +52,6 @@ def email_code():
   except Exception as e:
     print('__邮件发送失败__',e)
     return response_message.UserMessage.error("邮件发送失败")
-
 
 @user.route("/register",methods=["post"])
 def register():
@@ -83,3 +83,34 @@ def register():
   password = hashlib.md5(password.encode()).hexdigest()
   result = user.do_register(username=username,password=password)
   return response_message.UserMessage.success("用户注册成功")
+
+@user.route("/login",methods=["post"])
+def login():
+  request_data = json.loads(request.data)
+  username = request_data.get("username")
+  password = request_data.get("password")
+  vcode = request_data.get("vcode")
+
+  # 做数据的验证
+  if vcode.lower() != session.get("vcode"):
+      return response_message.UserMessage.error("验证码输入错误")
+
+
+  # 实现登录功能
+  password = hashlib.md5(password.encode()).hexdigest()
+  user = User()
+  result = user.find_by_username(username)
+  if len(result) == 1 and result[0].password == password:
+    # 需要进行登录状态的管理
+    session["is_login"] = "true"
+    session["user_id"] = result[0].user_id
+    session["username"] = username
+    session["nickname"] = result[0].nickname
+    session["picture"] = config[env].user_header_image_path+result[0].picture
+
+    response = make_response(response_message.UserMessage.success("登录成功"))
+    response.set_cookie("username", username, max_age=30*24*3600)
+    # response.set_cookie("username",username,max_age=30*24*3600)
+    return response
+  else:
+    return response_message.UserMessage.error("用户名或者是密码错误")
