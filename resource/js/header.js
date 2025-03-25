@@ -96,22 +96,23 @@ function userReg() {
     })
 }
 
-// // 登录功能实现
-// function doLogin(){
-// 	var username = document.querySelector("#username").value;
-// 	var password = document.querySelector("#password").value;
-// 	var authCode = document.querySelector("#auth-code").value;
-// 	axios.post("/login",{
-// 		username:username,
-// 		password:password,
-// 		vcode:authCode
-// 	}).then((res)=>{
-// 		if(res.data.status==1000){
-// 			alert(res.data.data);
-// 			setTimeout("location.reload()",1000);
-// 		}else{
-// 			alert(res.data.data);
-// 		}
-// 	})
-//
-// }
+// 登录功能实现
+function doLogin() {
+  var username = document.querySelector('#username').value
+  var password = document.querySelector('#password').value
+  var authCode = document.querySelector('#auth-code').value
+  axios
+    .post('/login', {
+      username: username,
+      password: password,
+      vcode: authCode
+    })
+    .then((res) => {
+      if (res.data.status == 1000) {
+        alert(res.data.data)
+        setTimeout('location.reload()', 1000)
+      } else {
+        alert(res.data.data)
+      }
+    })
+}
