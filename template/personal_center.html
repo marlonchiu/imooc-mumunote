@@ -1,0 +1,114 @@
+{% extends 'public/header.html' %}
+{% block content %}
+<link rel="stylesheet" href="/css/personal_center.css">
+	<div class="person-center-header">
+		<div class="user-info clearfix">
+			<div class="user-picture fl">
+				<img src="{{user.picture}}" alt="">
+			</div>
+			<div class="personal-name fl">{{user.nickname}}</div>
+		</div>
+	</div>
+	<div class="personal-main">
+		<div class="personal-content clearfix">
+			<div class="menu fl">
+			<!-- 	 <div class="every-menu">
+				</div> 
+				 -->
+				 <!-- 判断具体哪个菜单是活动的菜单 -->
+				 {% if active == 'article' %}
+				 <div class="active">
+				 {% else %}
+				 <div class="every-menu">
+				 {% endif %}
+					 <a href="/personal?type=article">
+						 <span class="iconfont">&#xe6c7;</span>
+						 <span>我的文章</span>
+					 </a>
+				 </div>
+				 
+				 {% if active == 'favorite' %}
+				 <div class="active">
+				 {% else %}
+				 <div class="every-menu">
+				 {% endif %}
+				 					 <a href="/personal?type=favorite">
+				 						 <span class="iconfont">&#xeca7;</span>
+				 						 <span>我的收藏</span>
+				 					 </a>
+				 </div>
+				 
+				 
+				 {% if active == 'feedback' %}
+				 <div class="active">
+				 {% else %}
+				 <div class="every-menu">
+				 {% endif %}
+				 					 <a href="/personal?type=feedback">
+				 						 <span class="iconfont">&#xe607;</span>
+				 						 <span>我的评论</span>
+				 					 </a>
+				 </div>
+				
+			</div>
+			<!-- <div class="content fl">我是右侧的文章内容</div> -->
+			<div class="content fl">
+				<!-- 无内容时展现的内容 -->
+				{% if article_data==[] %}
+					<div class="item-list">
+						{% if type_name == 'article' %}
+						<p class="no-item">
+							你还没有任何文章，快去
+							<a href="/article/new">发表文章</a>
+						</p>
+						{% elif type_name == 'favorite' %}
+						<p class="no-item">
+							你还没有任何文章收藏，快去
+							<a href="/">看看文章</a>吧
+						</p>
+						{% elif type_name == 'feedback' %}
+						<p class="no-item">
+							你还没有任何文章评论，快去
+							<a href="/">看看文章</a>吧
+						</p>
+						{% endif %}
+					</div>
+				{% else %}
+				<!-- 有内容时 -->
+				<div class="item-list">
+					{% for article in article_data %}
+						<div class="every-item">
+							<div class="item-title">
+								<a href="/detail?article_id={{article.id}}" target="_blank">
+									{{article.title}}
+								</a>
+								<span>{{article.article_type}}</span>
+							</div>
+							<div class="item-content clearfix">
+								<div class="item-image fl">
+									<a href="/detail?article_id={{article.id}}" target="_blank">
+										<img src="{{article.article_image}}" alt="">
+									</a>
+								</div>
+								<div class="item-text fl">
+									{{article.article_content | striptags | truncate(255)}}
+								</div>
+							</div>
+							<div class="item-info">
+								<span>{{article.browse_num}}浏览</span>
+								<span>0评论</span>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+				{% endif %}
+				
+				
+			</div>
+		
+		</div>
+	</div>
+  
+	</body>
+</html>
+{% endblock %}

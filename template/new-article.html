@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>文章发布</title>
+
+		<script type="text/javascript" src="/plugins/ueditor-plus/ueditor.config.js"></script>
+		<script type="text/javascript" src="/plugins/ueditor-plus/ueditor.all.js"></script>
+		<script type="text/javascript" src="/plugins/ueditor-plus/lang/zh-cn/zh-cn.js"></script>
+		<script type="text/javascript" src="/js/new-article.js"></script>
+		<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
+		<script type="text/javascript" src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/js/axios.min.js"></script>
+	<link rel="stylesheet" href="/css/base.css">
+	<link rel="stylesheet" href="/css/new-article.css">
+	</head>
+	<body>
+		<div class="header">
+			<div class="left">
+				<span class="iconfont" onclick="showDraftedList()">&#xe895;我的草稿
+					<div class="drafted-num">{{drafted_count}}</div>
+				</span>
+				
+				<div class="drafted-info" style="display: none;">
+					<div class="iconfont">&#xe601;</div>
+					<div class="drafted-list">
+						<i>我的草稿</i>
+						{% for drafted in all_drafted %}
+						<div class="clearfix" onclick="toDrafted({{drafted.id}})">
+							<div class="drafted-icon fl">
+								<i class="iconfont">&#xe618;</i>
+							</div>
+							<div class="drafted-create fl">
+								<div class="drafted-name">{{drafted.title}}</div>
+								<div class="drafted-update-time">{{drafted.create_time}}</div>
+							</div>
+						</div>
+						{% endfor %}
+			<!-- 			<div class="clearfix">
+							<div class="drafted-icon fl">
+								<i class="iconfont">&#xe618;</i>
+							</div>
+							<div class="drafted-create fl">
+								<div class="drafted-name">我的草稿名字</div>
+								<div class="drafted-update-time">2365-23-12 12:12:12</div>
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="drafted-icon fl">
+								<i class="iconfont">&#xe618;</i>
+							</div>
+							<div class="drafted-create fl">
+								<div class="drafted-name">我的草稿名字</div>
+								<div class="drafted-update-time">2365-23-12 12:12:12</div>
+							</div>
+						</div> -->
+					</div>
+					
+				</div>
+				
+			</div>
+			<div class="mid">
+				<span>
+					UEditor
+				</span>
+			</div>
+			<div class="right">
+				<span class="publish" data-bs-toggle="modal" data-bs-target="#publishArticleModal" onclick="createArticle(0)">发表</span>
+			</div>
+		</div>
+		<div class="main">
+			<input class="article-header" placeholder="请在此输入标题"></input>
+			<div class="ue">
+				<script id="editor" type="text/plain" style="height:300px;">
+					这是我的初始化内容
+				</script>
+			</div>
+		</div>
+		
+
+<!-- 这个是文章发布的模态框 -->
+			<div class="modal fade" id="publishArticleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-body clearfix">
+						<div class="publish-left fl">
+							<div class="upload-header-image">
+								<label for="xFile">
+									<img src="/images/image-upload.png" alt="">
+								</label>
+							</div>
+							<div class="upload-header-button">
+								<label for="xFile">本地上传</label>
+								<form><input type="file" id="xFile" accept="image/*" style="display: none;"></form>
+							</div>
+							<div class="random-header" onclick="randomHeaderImage()">随机封面</div>
+							<div class="upload-desc">
+								请上传200*200px，小于等于80KB的PNG/JPG/GIF图片
+							</div>
+						</div>
+						<div class="publish-right fl">
+							<div class="article-cloumns clearfix">
+								<div class="article-columns-left fl">
+									<div class="article-label-name">投递栏目</div>
+									<div class="article-label-value" onclick="showArticleLabelList()">
+										<span>请选择需要投递的栏目</span>
+										<span class="iconfont">&#xe6b5;</span>
+										<div class="article-label-list" style="display: none;">
+											<div>
+												{% for label_name,label_value in label_types.items() %}
+												<li data-label-type="{{label_name}}" class="{{label_value.selected}}" onclick="selectLabelName('{{label_name}}','{{label_value.name}}')">{{label_value.name}}</li>
+												{% endfor %}
+																<!-- 								<li class="article-label-selected">请选择需要投递的栏目</li>
+												<li>Python</li>
+												<li>Java</li>
+												<li>功能测试</li>
+												<li>性能测试</li>
+												<li>自动化测试</li>
+												<li>幽默段子</li> -->
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<div class="article-columns-right fl">
+									<div class="article-type-name">文章类型</div>
+									<div class="article-type-value" onclick="showArticleTypeList()">
+										<span>请选择</span>
+										<span class="iconfont">&#xe6b5;</span>
+										<div class="article-type-list" style="display: none;">
+											<div>
+												{% for article_type_name,article_type_value in article_types.items() %}
+												<li data-article-type="{{article_type_name}}" class="{{article_type_value.selected}}" onclick="selectArticleType('{{article_type_name}}','{{article_type_value.name}}')">{{article_type_value.name}}</li>
+												{% endfor %}
+												<!-- <li class="article-type-selected">请选择</li>
+												<li>首发</li>
+												<li>原创</li>
+												<li>其它</li> -->
+											</div>
+										
+										</div>
+	
+										
+									</div>
+								</div>
+							</div>
+							<div class="article-tags">
+								<div class="article-tag-name">
+									<span>文章标签</span>
+									<!-- <span>0/3</span> -->
+									<span>
+										<span class="tag-num">0</span>
+										<span>/</span>
+										<span>3</span>
+									</span>
+								</div>
+								<div class="article-tag-value clearfix">
+									<div class="change-tags fl">
+										<!-- <span>Python</span>
+										<span>Js</span> -->
+									</div>
+									<input class="fl" type="text" placeholder="选择下列标签">
+								</div>
+								<script>
+									window.globalArticleTags= {{article_tags | safe}}
+								</script>
+								<div class="article-tag-list">
+									{% for article_tag in article_tags %}
+										<span onclick="addTag('{{article_tag}}')">{{article_tag}}</span>
+									{% endfor %}
+									<!-- <span>Html5</span>
+									<span>Angular</span>
+									<span>JS</span>
+									<span>CSS3</span>
+									<span>Sass/Less</span>
+									<span>JAVA</span>
+									<span>Python</span>
+									<span>Go</span>
+									<span>C++</span>
+									<span>C#</span> -->
+								</div>
+							</div>
+							<button class="saveAndCancelButton" onclick="createArticle(0)">保存并取消</button>
+							<button class="publishButton" onclick="createArticle(1)">确定发布</button>
+						</div>
+			      </div>
+			  </div>
+			</div>
+			
+
+	</body>
+</html>

@@ -1,0 +1,177 @@
+{% extends 'public/header.html' %}
+{% block content %}
+<!--      按需引入-->
+        {% include 'public/sub-header.html' %}
+		
+		<link rel="stylesheet" href="css/article-info.css">
+	
+		<script type="text/javascript" src="/plugins/ueditor-plus/ueditor.config.js"></script>
+		<script type="text/javascript" src="/plugins/ueditor-plus/ueditor.all.js"></script>
+		<script type="text/javascript" src="/plugins/ueditor-plus/lang/zh-cn/zh-cn.js"></script>
+		<script type="text/javascript" src="/js/article-info.js"></script>
+		<script type="text/javascript" src="/js/axios.min.js"></script>
+  <div class="article-main">
+	  <div class="article-container">
+		  <div class="article-path">
+			  <!-- <span>首页 > 手记 > 为什么面试聊得很好，转头却挂了？</span> -->
+			  <span>首页 > 手记 > {{article_content.title}}</span>
+			   
+		  </div>
+	  </div>
+	  <div class="article-container-main clearfix">
+		  <div class="left fl">
+			  <div class="article-title">
+				  <span>{{article_content.title}}</span>
+			  </div>
+			  <div class="note-article-info clearfix">
+				  <div class="note-left fl">
+					  <span class="tag-name">标签:</span>
+					  {% for article_tag in article_tag_list %}
+					  <!-- <span class="tag-value">{{article_content.article_tag}}</span> -->
+					  <span class="tag-value">{{article_tag}}</span>
+					  {% endfor %}
+					  </div>
+					  {% if is_favorite==1 %}
+						<div class="note-right fr" onclick="favoriteUpdate({{article_content.id}},0)">收藏</div>
+						{% else %}
+						<div class="note-right fr" onclick="favoriteUpdate({{article_content.id}},1)">已收藏</div>
+						{% endif %}
+			  </div>
+			  <div class="article-content-warp">
+				  {{article_content.article_content | safe}}
+			  </div>
+			  <div class="article-create-time">发表于 {{article_content.create_time}}， 共 {{article_content.browse_num}} 人浏览</div>
+			  <div class="imooc">本文原创发布于慕课网 ，转载请注明出处，谢谢合作</div>
+			  <div class="praise">
+				  <span class="iconfont">&#xe61b;</span>
+			  </div>
+			  
+
+		  </div>
+		  
+		  <div class="right fl">
+			  <div class="top clearfix">
+				  <div class="author-image fl">
+					  <img src="{{user_info.picture}}" alt="">
+				  </div>
+				  <div class="author-info fl">
+					  <div class="author-name">{{user_info.nickname}}</div>
+					  <div class="author-job">{{user_info.job}}</div>
+				  </div>
+			  </div>
+			  <div class="bottom">
+				  <div class="about-article">相关文章推荐</div>
+					<div class="about-article-info">
+						{% for article in about_article %}
+						<div class="article-info-row">
+							<a href="/detail?article_id={{article.id}}" class="iconfont">&#xe895;&nbsp;&nbsp;{{article.title}}</a>
+						</div>
+						{% endfor %}
+					</div>
+			  </div>
+		  </div>	  
+	  </div>
+	  	  
+		<div class="feedback-num">{{feedback_count}} 评论</div>  
+		<div class="article-feedback clearfix">
+			<div class="feedback-wrap fl">
+				<div class="write-feedback-wrap clearfix">
+					<div class="fl">评论</div>
+					<span class="fl"  data-bs-toggle="modal" data-bs-target="#feedbackModal">共同学习，写下你的评论</span>
+				</div>
+				{% if feedback_data_list==[] %}
+				<div class="no-data">
+					<div class="no-data-line">
+						<span>暂无评论</span>
+					</div>
+				</div>
+				{% else %}
+				<div class="feedback-list-wrap">
+					{% for feedback_data in feedback_data_list %}
+					<div class="feedback-detail-wrap">
+						<div class="feedback-detail clearfix">
+							<div class="feedback fl">
+								<div class="feedback-author">
+									<a href="">
+										<img src="{{feedback_data.picture}}" alt="">
+										<span>{{feedback_data.floor_number}}楼</span>
+									</a>
+								</div>
+							</div>
+							<div class="feedback-content fl">
+								<a href="">{{feedback_data.nickname}}</a>
+								<span>{{feedback_data.content |safe}}</span>
+								<div class="feedback-content-footer clearfix">
+									<span class="iconfont fl">&#xe61b;</span>
+									<div class="reply-button fl" onclick="showWriteAuthorInput({{feedback_data.id}},{{feedback_data.article_id}},{{feedback_data.user_id}},'{{feedback_data.nickanme}}',{{feedback_data.id}})">回复</div>
+									<div class="publish-time fr">{{feedback_data.create_time}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="reply-box">
+						{% for reply in feedback_data.reply_list %}
+						<div class="feedback-reply-detail clearfix">
+							<div class="feedback-reply fl">
+								<div class="feedback-author">
+									<a href="">
+										<!-- <img src="/images/headers/6.jpg" alt=""> -->
+										<img src="{{reply.from_user.picture}}" alt="">
+									</a>
+								</div>
+							</div>
+							<div class="feedback-reply-content fl">
+								<a href="#">{{reply.from_user.nickname}}</a>
+								<span class="reply-text">回复</span>
+								<a href="">{{reply.to_user.nickname}}</a>
+								<p>{{reply.content.content|safe}}</p>
+								<div class="feedback-reply-content-footer clearfix">
+									<div class="reply2-button fl" onclick="showWriteAuthorInput({{feedback_data.id}},{{feedback_data.article_id}},{{reply.from_user.user_id}},'{{reply.from_user.nickanme}}',{{reply.content.id}})">回复</div>
+									<div class="publish-time fr">{{reply.content.create_time}}</div>
+								</div>
+							</div>
+						</div>
+						
+						{% endfor %}
+						<div class="write-author-feedback" style="display: none;" id={{feedback_data.id}}>
+							<!-- <img src="{{feedback_data.picture}}" alt=""> -->
+							<img src="{{session.get('picture')}}" alt="">
+							<textarea type="text" placeholder="写下你的回复......"></textarea>
+							<div class="author-feedback-button">
+								<button class="cancel-author-feedback" onclick="hiddenWriteAuthorInput({{feedback_data.id}})">取消</button>
+								<button class="confirm-author-feedback" onclick="writeReply()">回复</button>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				{% endif %}
+			</div>
+			<div class="useless-right fl"></div>
+		</div>
+		  
+  </div>
+  
+  <div class="feedback-modal-wrap">
+	  <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h1 class="modal-title fs-5" id="feedbackModalLabel">发评论</h1>
+	          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	        </div>
+	        <div class="modal-body">
+	          <!-- 这里将来需要添加一个UEditor plus -->
+	  		  <div id="feedback-container"></div>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-primary" onclick="addFeedback({{article_content.id}})">提交</button>
+	  	  </div>
+	      </div>
+	    </div>
+	  </div>
+  </div>
+
+  
+  
+{% endblock %}

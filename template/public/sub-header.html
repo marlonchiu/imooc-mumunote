@@ -1,0 +1,14 @@
+		<div class="sub-header clearfix">
+			<div class="sub-header-container">
+				<div class="sub-header-left fl">
+					<img src="images/article-logo.png" alt="">
+					<img src="images/article-desc.png" alt="">
+				</div>
+				<div class="sub-header-right fr clearfix">
+						<input type="text" class="fl searchbox" placeholder="搜索感兴趣的知识和文章">
+						<span class="iconfont fl" onclick="search_article()">&#xe60d;</span>
+						<button class="fl" onclick="toWriteArticlePage('{{session.get('is_login')}}')">写文章</button>
+				</div>
+			</div>
+          </div>
+		  <script type="text/javascript" src="/js/sub-header.js"></script>

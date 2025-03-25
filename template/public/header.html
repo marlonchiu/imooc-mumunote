@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>慕慕手记首页</title>
+		<!-- 初始化样式 -->
+		<link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/base.css">
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/login.css">
+		<script type="text/javascript" src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+		<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+			<script type="text/javascript" src="/js/axios.min.js"></script>
+		<script type="text/javascript" src="/js/header.js"></script>
+
+	</head>
+	<body>
+		<div class="header">
+			<div class="header-container clearfix">
+				<div class="header-left fl">
+					<span><a href="">慕课网首页</a></span>
+					<span><a href="">免费课</a></span>
+					<span><a href="">实战课</a></span>
+					<span>
+						<a href="">体系课</a>
+						<img src="images/new.png" alt="">
+					</span>
+					<span><a href="">慕课教程</a></span>
+					<span><a href="">专栏</a></span>
+					<span><a href="">手记</a></span>
+					<span>
+						<a href="">企业服务</a>
+						<img src="images/new.png" alt="">
+					</span>
+				</div>
+				<div class="header-right fr">
+					<span>
+						<i class="iconfont">&#xe60d;</i>
+					</span>
+					<span>
+						<i class="iconfont">&#xe73c;</i>
+					</span>
+					
+					<span class="login">
+						{% if session.get('is_login') == 'true' %}
+						
+						<a href="/personal">欢迎{{session.get('nickname')}}</a>
+						<a href="/personal"><img src="{{session.get('picture')}}" alt=""></a>
+						<a href="/logout">注销</a>
+						{% else %}
+						<span data-bs-toggle="modal" data-bs-target="#exampleModal"><a href="#">登录</a></span>
+						<span>/</span>
+						<span data-bs-toggle="modal" data-bs-target="#regModal"><a href="#">注册</a></span>
+						{% endif %}
+					</span>
+
+				</div>
+			</div>
+			</div>
+			
+			<!-- 这个是登录的模态框 -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h1 class="modal-title fs-5" id="exampleModalLabel">用户登录</h1>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+			        <form>
+			          <div class="mb-3">
+			            <input type="text" class="form-control" id="username" placeholder="请输入您的邮箱">
+			          </div>
+			          <div class="mb-3">
+							<input type="password" class="form-control" id="password" placeholder="请输入您的密码">
+			          </div>
+					  <div class="mb-3">
+						  <img src="/vcode" alt="" onclick="this.src='/vcode?'+Math.random()" class="auto-code-image">
+					  	  <input type="text" class="auth-code" id="auth-code" placeholder="请输入验证码">
+					  </div>
+					  
+					  <button type="button" class="btn btn-primary login-button" onclick="doLogin()">登录</button>
+			        </form>
+			      </div>
+			      <div class="modal-footer">
+					  <span class="register" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#regModal">注册</span>
+					<!--  
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary">Send message</button>
+			      -->
+				  </div>
+			    </div>
+			  </div>
+			</div>
+			
+			<!-- 这是注册的模态框 -->
+			
+			<div class="modal fade" id="regModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h1 class="modal-title fs-5" id="exampleModalLabel">用户注册</h1>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+			        <form>
+			          <div class="mb-3">
+			            <input type="text" class="form-control" id="reg-username" placeholder="请输入您的邮箱">
+			          </div>
+			          <div class="mb-3">
+							<input type="password" class="form-control" id="reg-password" placeholder="请输入您的密码">
+			          </div>
+					  <div class="mb-3">
+							<input type="password" class="form-control" id="reg-password1" placeholder="请再次输入您的密码">
+					  </div>
+					  <div class="mb-3">
+					  	  <input type="text" class="auth-code" id="email-vcode" placeholder="请输入验证码">
+						  <button class="send" id="send-email-vcode" onclick="sendEmailVCode()">发送</button>
+					  </div>
+					  
+					  <button type="button" class="btn btn-primary login-button" onclick="userReg()">注册</button>
+			        </form>
+			      </div>
+			      <div class="modal-footer">
+					  <span class="register" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#exampleModal">登录</span>
+			    <!--    
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary">Send message</button>
+			      -->
+				  </div>
+			    </div>
+			  </div>
+			</div>
+				
+    {% block content %}
+  {% endblock %}
