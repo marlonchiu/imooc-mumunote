@@ -42,6 +42,7 @@ def home():
     else:
       db_result = article.find_article(page, article_type)
 
+    # 处理数据
     for article, nickname in db_result:
       # 分类内容显示的转换
       article.label = label_types.get(article.label_name).get("name")
@@ -59,7 +60,7 @@ def home():
     print('_________________________', len(db_result))
     start_num = request.args.get("start_num")
     if start_num is None:
-        start_num = 0
+      start_num = 0
     end_num = len(db_result)
 
     # 左侧菜单栏文章分类的逻辑

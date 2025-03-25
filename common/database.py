@@ -9,7 +9,7 @@ def db_connect():
     # 创建一个引擎，连接数据库
     config_class = config[env]
     print(config_class)
-    engine = create_engine(config_class.db_url, echo=config_class.if_echo)
+    engine = create_engine(config_class.db_url, echo=config_class.if_echo, pool_size=10, max_overflow=30)
     # 打开数据库的连接会话
     session = sessionmaker(engine)
     # 保证线程安全
