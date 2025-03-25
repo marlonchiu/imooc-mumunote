@@ -15,7 +15,29 @@
 				</div>
 				<div class="article-warpper fl">
 					<div class="article-inner">
-						<div class="article-row clearfix">
+            <!-- 文章数据渲染 -->
+            {% for article,nickname in result %}
+            <div class="article-row clearfix">
+              <div class="article-header-image fl">
+								<img src="{{article.article_image}}" alt="">
+							</div>
+							<div class="article-desc fl">
+								<div class="article-name">
+									<a href="/detail?article_id={{article.id}}" target="_blank">{{article.title}}</a>
+								</div>
+								<div class="article-info clearfix">
+									<article class="article-left fl">
+										<span>{{article.label}}</span>
+										<span class="iconfont">{{article.browse_num}}</span>
+										<span>{{nickname}}</span>
+										<span>{{article.article_tag}}</span>
+									</article>
+									<div class="article-right fr">{{article.create_time}}</div>
+								</div>
+							</div>
+            </div>
+            {% endfor %}
+						<!-- <div class="article-row clearfix">
 							<div class="article-header-image fl">
 								<img src="images/article-header.jpg" alt="">
 							</div>
@@ -33,64 +55,8 @@
 									<div class="article-right fr">08.09</div>
 								</div>
 							</div>
-						</div>
-						<div class="article-row clearfix">
-							<div class="article-header-image fl">
-								<img src="images/article-header.jpg" alt="">
-							</div>
-							<div class="article-desc fl">
-								<div class="article-name">
-									<a href="" target="_blank">研发技术分享</a>
-								</div>
-								<div class="article-info clearfix">
-									<article class="article-left fl">
-										<span>资讯</span>
-										<span class="iconfont">19254</span>
-										<span>慕课网官方</span>
-										<span>资讯</span>
-									</article>
-									<div class="article-right fr">08.09</div>
-								</div>
-							</div>
-						</div>
-						<div class="article-row clearfix">
-							<div class="article-header-image fl">
-								<img src="images/article-header.jpg" alt="">
-							</div>
-							<div class="article-desc fl">
-								<div class="article-name">
-									<a href="" target="_blank">研发技术分享</a>
-								</div>
-								<div class="article-info clearfix">
-									<article class="article-left fl">
-										<span>资讯</span>
-										<span class="iconfont">19254</span>
-										<span>慕课网官方</span>
-										<span>资讯</span>
-									</article>
-									<div class="article-right fr">08.09</div>
-								</div>
-							</div>
-						</div>
-						<div class="article-row clearfix">
-							<div class="article-header-image fl">
-								<img src="images/article-header.jpg" alt="">
-							</div>
-							<div class="article-desc fl">
-								<div class="article-name">
-									<a href="" target="_blank">研发技术分享</a>
-								</div>
-								<div class="article-info clearfix">
-									<article class="article-left fl">
-										<span>资讯</span>
-										<span class="iconfont">19254</span>
-										<span>慕课网官方</span>
-										<span>资讯</span>
-									</article>
-									<div class="article-right fr">08.09</div>
-								</div>
-							</div>
-						</div>
+						</div> -->
+
 					</div>
 				</div>
 			</div>
