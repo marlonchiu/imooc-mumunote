@@ -47,3 +47,8 @@ VirtualBox 、Ububtu server、xshell、mysql、Navicat
 - SQLAlchemy 提供了 SQL 工具包及对象关系映射(ORM)工具
 - 为高效和高性能的数据库访问而设计，实现了完整的企业级持久模型
 - 安装 SQLAlchemy 命令: `pip install SQLAlchemy`
+
+
+## 图片验证码
+
+1、安装命令: `pip install pillow`
