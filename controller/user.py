@@ -1,5 +1,5 @@
 from flask import Blueprint
-from common.user import User
+from model.user import User
 
 # 创建蓝图对象
 user = Blueprint('user', __name__)
