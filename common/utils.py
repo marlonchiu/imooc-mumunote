@@ -1,9 +1,9 @@
+import io
 import random
 import string
 
 # 这个PIL就是pillow  pip install pillow
 from PIL import Image, ImageFont, ImageDraw
-
 
 class ImageCode():
   def get_text(self):
@@ -47,11 +47,18 @@ class ImageCode():
     # 绘制干扰线
     self.draw_lines(draw,2,width,height)
 
-    im.show()
+    # im.show()
     return im,code
 
+  def get_code(self):
+    im,code = self.draw_verify_code()
+    buf = io.BytesIO()
+    im.save(buf, "jpeg")
+    image_b_string = buf.getvalue()
+    return code, image_b_string
 
 
 
-image_code = ImageCode()
-image_code.draw_verify_code()
+
+# image_code = ImageCode()
+# image_code.draw_verify_code()
