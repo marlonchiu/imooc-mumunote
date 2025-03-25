@@ -2,9 +2,9 @@
 {% block content %}
 <!--      按需引入-->
         {% include 'public/sub-header.html' %}
-		
+
 		<link rel="stylesheet" href="css/article-info.css">
-	
+
 		<script type="text/javascript" src="/plugins/ueditor-plus/ueditor.config.js"></script>
 		<script type="text/javascript" src="/plugins/ueditor-plus/ueditor.all.js"></script>
 		<script type="text/javascript" src="/plugins/ueditor-plus/lang/zh-cn/zh-cn.js"></script>
@@ -15,7 +15,7 @@
 		  <div class="article-path">
 			  <!-- <span>首页 > 手记 > 为什么面试聊得很好，转头却挂了？</span> -->
 			  <span>首页 > 手记 > {{article_content.title}}</span>
-			   
+
 		  </div>
 	  </div>
 	  <div class="article-container-main clearfix">
@@ -45,10 +45,10 @@
 			  <div class="praise">
 				  <span class="iconfont">&#xe61b;</span>
 			  </div>
-			  
+
 
 		  </div>
-		  
+
 		  <div class="right fl">
 			  <div class="top clearfix">
 				  <div class="author-image fl">
@@ -69,10 +69,10 @@
 						{% endfor %}
 					</div>
 			  </div>
-		  </div>	  
+		  </div>
 	  </div>
-	  	  
-		<div class="feedback-num">{{feedback_count}} 评论</div>  
+
+		<div class="feedback-num">{{feedback_count}} 评论</div>
 		<div class="article-feedback clearfix">
 			<div class="feedback-wrap fl">
 				<div class="write-feedback-wrap clearfix">
@@ -131,7 +131,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						{% endfor %}
 						<div class="write-author-feedback" style="display: none;" id={{feedback_data.id}}>
 							<!-- <img src="{{feedback_data.picture}}" alt=""> -->
@@ -149,9 +149,9 @@
 			</div>
 			<div class="useless-right fl"></div>
 		</div>
-		  
+
   </div>
-  
+
   <div class="feedback-modal-wrap">
 	  <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	    <div class="modal-dialog">
@@ -172,6 +172,4 @@
 	  </div>
   </div>
 
-  
-  
 {% endblock %}

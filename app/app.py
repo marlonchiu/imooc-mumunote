@@ -18,3 +18,6 @@ def init_blueprint(app):
 
     from controller.user import user
     app.register_blueprint(user)
+
+    from controller.article import article
+    app.register_blueprint(article)
