@@ -15,6 +15,8 @@ def article_detail():
   article = Article()
   # 获取文章的所有信息
   article_content = article.get_article_detail(article_id)
+  article_tag_string = article_content.article_tag
+  article_tag_list = article_tag_string.split(",")
 
   # 获取文章作者信息
   user = User()
@@ -30,5 +32,6 @@ def article_detail():
   return render_template("article-info.html",
                         article_content=article_content,
                         user_info=user_info,
-                        is_favorite=is_favorite
+                        is_favorite=is_favorite,
+                        article_tag_list=article_tag_list,
                         )
