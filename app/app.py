@@ -13,5 +13,8 @@ def create_app():
     return app
 
 def init_blueprint(app):
+    from controller.index import index
+    app.register_blueprint(index)
+
     from controller.user import user
     app.register_blueprint(user)

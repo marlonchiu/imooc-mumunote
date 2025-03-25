@@ -4,7 +4,7 @@ from common.user import User
 # 创建蓝图对象
 user = Blueprint('user', __name__)
 
-@user.route('/' )
+@user.route('/aaa' )
 def get_one():
   user = User()
   result = user.get_one()

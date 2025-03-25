@@ -1,0 +1,55 @@
+{% extends 'public/header.html' %}
+{% block content %}
+<!--      按需引入-->
+        {% include 'public/sub-header.html' %}
+			<div class="article-container clearfix">
+				<div class="left-menu fl">
+					{% for label_name,label_value in label_types.items() %}
+					<div class="{{label_value.selected}}">
+						<a href="?article_type={{label_name}}&page=1">{{label_value.name}}</a>
+						</div>
+					{% endfor %}
+				</div>
+				<div class="article-warpper fl">
+					<div class="article-inner">
+						<!-- 文章数据渲染 -->
+						{% for article,nickname in result %}
+						<div class="article-row clearfix">
+							<div class="article-header-image fl">
+								<img src="{{article.article_image}}" alt="">
+							</div>
+							<div class="article-desc fl">
+								<div class="article-name">
+									<a href="/detail?article_id={{article.id}}" target="_blank">{{article.title}}</a>
+								</div>
+								<div class="article-info clearfix">
+									<article class="article-left fl">
+										<span>{{article.label}}</span>
+										<span class="iconfont">{{article.browse_num}}</span>
+										<span>{{nickname}}</span>
+										<span>{{article.article_tag}}</span>
+									</article>
+									<div class="article-right fr">{{article.create_time}}</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						<div class="load-more">下滑加载更多内容</div>
+					</div>
+				</div>
+			</div>
+	</body>
+	<script>
+		window.startNum = {{start_num}};
+		window.endNum = {{end_num}};
+		
+	</script>
+	<script type="text/javascript" src="/js/index.js"></script>
+	<script>
+		if(location.search.includes("scroll")){
+			window.scrollTo(0,document.body.scrollHeight-1000);
+		}
+	</script>
+	
+</html>
+{% endblock %}

@@ -4,10 +4,10 @@ __pycache__/
 *$py.class
 # log 下除了.gitkeep文件
 *.log
-resource/font/
-resource/images/
-resource/plugins/
-resource/upload/
+# resource/font/
+# resource/images/
+# resource/plugins/
+# resource/upload/
 # C extensions
 *.so
 
