@@ -102,7 +102,7 @@
 								<a href="">{{feedback_data.nickname}}</a>
 								<span>{{feedback_data.content |safe}}</span>
 								<div class="feedback-content-footer clearfix">
-									<span class="iconfont fl">&#xe61b;</span>
+									<span class="iconfont fl">&#xe60d;</span>
 									<div class="reply-button fl" onclick="showWriteAuthorInput({{feedback_data.id}},{{feedback_data.article_id}},{{feedback_data.user_id}},'{{feedback_data.nickanme}}',{{feedback_data.id}})">回复</div>
 									<div class="publish-time fr">{{feedback_data.create_time}}</div>
 								</div>
@@ -149,7 +149,7 @@
 			</div>
 			<div class="useless-right fl"></div>
 		</div>
-
+    {{feedback_data_list}}
   </div>
 
   <div class="feedback-modal-wrap">

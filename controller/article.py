@@ -26,7 +26,7 @@ def article_detail():
 
   # @todo 待办 补充获取文章的评论信息
   feedback_data_list = Feedback().get_feedback_user_list(article_id)
-  # feedback_count = Feedback().get_article_feedback_count(article_id)
+  feedback_count = Feedback().get_article_feedback_count(article_id)
 
   # @todo 待办 "我"是否收藏
   is_favorite = 1
@@ -45,5 +45,5 @@ def article_detail():
                         article_tag_list=article_tag_list,
                         about_article=about_article,
                         feedback_data_list=feedback_data_list,
-                        # feedback_count=feedback_count,
+                        feedback_count=feedback_count,
                         )

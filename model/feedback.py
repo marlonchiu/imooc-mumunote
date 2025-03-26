@@ -87,3 +87,12 @@ class Feedback(Base):
         Feedback.id.desc()
       ).all()
     return result
+
+  # 获取评论数量
+  def get_article_feedback_count(self, article_id):
+    result = db_session.query(Feedback).filter_by(
+      article_id=article_id,
+      reply_id=0,
+      base_reply_id=0
+      ).count()
+    return result
