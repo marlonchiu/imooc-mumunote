@@ -55,6 +55,7 @@ class Article(Base):
     # 获取文章详情
     def get_article_detail(self, article_id):
       result = db_session.query(Article).filter_by(id=article_id).first()
+      # 浏览次数+1
       result.browse_num += 1
       db_session.commit()
       return db_session.query(Article).filter_by(id=article_id).first()
