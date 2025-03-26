@@ -59,3 +59,11 @@ class Article(Base):
       db_session.commit()
       return db_session.query(Article).filter_by(id=article_id).first()
       # return db_session.query(Article).filter(Article.id==article_id)
+
+    # 相关文章
+    def find_about_article(self, label_name):
+      result = db_session.query(Article).filter_by(label_name=label_name).order_by(
+        Article.browse_num.desc()
+      ).limit(5).all()
+      
+      return result

@@ -34,6 +34,9 @@ def article_detail():
     user_id = session.get("user_id")
     is_favorite = Favorite().user_if_favorite(user_id,article_id)
 
+  # 相关文章（label_name 相同）
+  about_article = article.find_about_article(article_content.label_name)
+
   return render_template("article-info.html",
                         article_content=article_content,
                         user_info=user_info,
