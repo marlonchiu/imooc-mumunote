@@ -27,7 +27,15 @@ class Favorite(Base):
       }
       favorite = Favorite(**insert_data)
       db_session.add(favorite)
-
     db_session.commit()
 
-    return 'ok'
+  # 查询某个用户是否收藏
+  def user_if_favorite(self, user_id, article_id):
+      result = db_session.query(Favorite.canceled).filter_by(
+          user_id=user_id,
+          article_id=article_id
+      ).first()
+      if result is None:
+        return 1
+      else:
+        return result[0]

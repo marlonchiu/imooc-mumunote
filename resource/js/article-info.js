@@ -1,16 +1,18 @@
-// function favoriteUpdate(articleId,canceled){
-// 	axios.post("/favorite/update_status",{
-// 		article_id:articleId,
-// 		canceled:canceled
-// 	}).then((res)=>{
-// 		if(res.data.status==3000){
-// 			window.location.reload()
-// 		}else{
-// 			alert(res.data.data);
-// 		}
-// 	})
-// }
-//
+function favoriteUpdate(articleId, canceled) {
+  axios
+    .post('/favorite/update_status', {
+      article_id: articleId,
+      canceled: canceled
+    })
+    .then((res) => {
+      if (res.data.status == 3000) {
+        window.location.reload()
+      } else {
+        alert(res.data.data)
+      }
+    })
+}
+
 // //  发布评论的return true;
 // var ue = UE.getEditor('feedback-container', {
 // 		        // ... 更多配置

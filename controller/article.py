@@ -1,10 +1,11 @@
 
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, session
 
 from app.config.config import config
 from app.settings import env
 from common import response_message
 from model.article import Article
+from model.favorite import Favorite
 from model.user import User
 
 article = Blueprint("article",__name__)
@@ -28,6 +29,10 @@ def article_detail():
 
   # @todo 待办 "我"是否收藏
   is_favorite = 1
+  # 判断我是否登录
+  if session.get("is_login") == "true":
+    user_id = session.get("user_id")
+    is_favorite = Favorite().user_if_favorite(user_id,article_id)
 
   return render_template("article-info.html",
                         article_content=article_content,
