@@ -21,3 +21,6 @@ def init_blueprint(app):
 
     from controller.article import article
     app.register_blueprint(article)
+
+    from controller.favorite import favorite
+    app.register_blueprint(favorite)
