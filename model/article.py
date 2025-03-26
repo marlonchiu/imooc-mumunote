@@ -64,6 +64,6 @@ class Article(Base):
     def find_about_article(self, label_name):
       result = db_session.query(Article).filter_by(label_name=label_name).order_by(
         Article.browse_num.desc()
-      ).limit(5).all()
-      
+      ).limit(5)
+
       return result

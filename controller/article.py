@@ -42,4 +42,5 @@ def article_detail():
                         user_info=user_info,
                         is_favorite=is_favorite,
                         article_tag_list=article_tag_list,
+                        about_article=about_article,
                         )
