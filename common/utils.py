@@ -1,6 +1,7 @@
 import io
 import random
 import string
+from datetime import datetime
 
 # 这个PIL就是pillow  pip install pillow
 from PIL import Image, ImageFont, ImageDraw
@@ -62,3 +63,12 @@ class ImageCode():
 
 # image_code = ImageCode()
 # image_code.draw_verify_code()
+
+def model_to_json(result):
+  dict = {}
+  for k,v in result.__dict__.items():
+    if not k.startswith("_sa_"):
+      if isinstance(v, datetime):
+        v = v.strftime("%Y-%m-%d %H:%M:%S")
+      dict[k] = v
+  return dict

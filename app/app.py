@@ -24,3 +24,6 @@ def init_blueprint(app):
 
     from controller.favorite import favorite
     app.register_blueprint(favorite)
+
+    from controller.feedback import feedback
+    app.register_blueprint(feedback)
