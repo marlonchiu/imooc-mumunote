@@ -1,0 +1,31 @@
+<mxfile host="65bd71144e">
+    <diagram id="DpptM9XWUXFt7JiPTxUS" name="第 1 页">
+        <mxGraphModel dx="695" dy="453" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="80" y="60" width="670" height="630" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="新开楼层2-用户2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="130" y="80" width="580" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="新开楼层1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="130" y="390" width="590" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="你的评论真好啊1（回复的是新开楼层2-楼主） - 用户3&amp;nbsp; 回复 用户2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="120" width="520" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="你的评论真好啊2（回复的是新开楼层2-楼主）-用户4 回复 用户2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="160" width="520" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="回复用户3-1（回复的是新开楼层2-楼主）-用户5 回复 用户3" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="200" width="520" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="回复用户4-1（回复的是新开楼层2-楼主）-用户7 回复 用户4" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="240" width="520" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
