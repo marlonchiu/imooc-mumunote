@@ -1,5 +1,5 @@
 import random
-from sqlalchemy import Table
+from sqlalchemy import Table, func
 
 from app.config.config import config
 from app.settings import env
@@ -96,3 +96,35 @@ class Feedback(Base):
       base_reply_id=0
       ).count()
     return result
+
+  # 插入一级评论
+  def insert_comment(self, user_id, article_id, content, ipaddr):
+    # label的意思就是重新起一个名字给字段
+    feedback_max_floor = db_session.query(
+        func.max(Feedback.floor_number).label("max_floor")
+    ).filter_by(
+        article_id=article_id
+    ).first()
+
+    if feedback_max_floor.max_floor == 0 or feedback_max_floor.max_floor is None:
+      floor_number = 1
+    else:
+      floor_number = int(feedback_max_floor.max_floor) + 1
+
+    feedback = Feedback(user_id=user_id,
+                        article_id=article_id,
+                        content=content,
+                        ipaddr=ipaddr,
+                        floor_number=floor_number,
+                        reply_id=0,
+                        base_reply_id=0)
+
+    try:
+      db_session.add(feedback)
+      # 做一个手动刷新就可以拿到插入的数据的值了
+      # db_session.refresh()
+      return feedback
+    except Exception as e:
+      print(e)
+      db_session.rollback()
+      return False

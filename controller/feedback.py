@@ -14,7 +14,7 @@ from app.config.ue_config import FEEDBACK_UECONFIG
 feedback = Blueprint('feedback', __name__)
 
 @feedback.route("/feedback/list", methods=["get","post"])
-def article_feedback_list():
+def feedback_list():
   request_data = json.loads(request.data)
   article_id = request_data.get("article_id")
 
@@ -53,3 +53,31 @@ def ueditor():
     result["title"]= filename
     result["original"] = filename
     return jsonify(result)
+
+
+# 添加一个评论
+@feedback.route("/feedback/add", methods=["post"])
+def feedback_add():
+  request_data = json.loads(request.data)
+  article_id = request_data.get("article_id")
+  content = request_data.get("content").strip()
+  ipaddr = request.remote_addr
+  user_id = session.get("user_id")
+
+  # 对内容进行校验
+  if len(content)<5 or len(content)>1000 :
+    return response_message.FeedbackMessage.other("内容长度不符")
+
+  feedback = Feedback()
+  try:
+    result = feedback.insert_comment(
+      user_id=user_id,
+      article_id=article_id,
+      content=content,
+      ipaddr=ipaddr,
+    )
+    result = model_to_json(result)
+    return response_message.FeedbackMessage.success("评论成功")
+  except Exception as e:
+    print(e)
+    return response_message.FeedbackMessage.error("评论失败")
