@@ -12,6 +12,8 @@
 
 > [PyMySQL](https://pypi.org/project/PyMySQL/)
 
+> [在 windows 上安装 Redis](https://redis.com.cn/redis-installation.html)
+
 ## 创建虚拟环境
 
 ```bash

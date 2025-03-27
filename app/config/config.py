@@ -15,6 +15,14 @@ class Config(object):
     # 配置头像存储路径
     user_header_image_path = "/images/headers/"
 
+    # 配置redis
+    REDIS_HOST = '127.0.0.1'
+    REDIS_PORT = 6379
+    REDIS_PASSWORD = ''
+    REDIS_POLL = 10
+    REDIS_DB = 2
+    REDIS_DECODE_RESPONSES = True
+
 # 测试环境
 class TestConfig(Config):
     # db_url = ""
