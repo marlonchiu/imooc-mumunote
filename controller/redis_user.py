@@ -34,7 +34,7 @@ def email_code():
     # session['ecode'] = code.lower()
     # redis_client.set(email,code.lower())
     # 我们的名字加一个冒号，RDM会帮助我们把所有冒号前边的内容形成一个文件夹，这样更方便我们的查看
-    email_ecode = "email:" + email
+    email_ecode = "email:"+email
     redis_client.set(email_ecode, code.lower())
     # redis_client.set(email_ecode,code.lower(),ex=60*5)
     # 单独设置过期时间
@@ -43,3 +43,36 @@ def email_code():
   except Exception as e:
     print('__邮件发送失败__',e)
     return response_message.UserMessage.error("邮件发送失败")
+
+
+@redis_user.route("/redis/register",methods=["post"])
+def register():
+  request_data = json.loads(request.data)
+  username = request_data.get("username")
+  password = request_data.get("password")
+  second_password = request_data.get("second_password")
+  ecode = request_data.get("ecode")
+  redis_ecode = redis_client.get("email:"+username)
+
+  # 做数据的验证
+  if ecode.lower() != redis_ecode:
+      return response_message.UserMessage.error("邮箱验证码错误")
+  # 用户名 和 密码的验证
+  if not re.match(".+@.+\..+", username):
+      return response_message.UserMessage.other("无效的邮箱")
+
+  if len(password) < 6:
+      return response_message.UserMessage.error("密码不合法")
+
+  if password != second_password:
+      return response_message.UserMessage.error("两次密码不一致")
+
+  # 用户名是否已经注册
+  user = User()
+  if len(user.find_by_username(username=username)) > 0:
+      return response_message.UserMessage.error("用户名已经存在")
+
+  # 实现注册的功能了
+  password = hashlib.md5(password.encode()).hexdigest()
+  result = user.do_register(username=username,password=password)
+  return response_message.UserMessage.success("用户注册成功")
