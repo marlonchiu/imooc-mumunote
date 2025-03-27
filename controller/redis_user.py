@@ -76,3 +76,50 @@ def register():
   password = hashlib.md5(password.encode()).hexdigest()
   result = user.do_register(username=username,password=password)
   return response_message.UserMessage.success("用户注册成功")
+
+
+
+@redis_user.route("/redis/login",methods=["post"])
+def login():
+  request_data = json.loads(request.data)
+  username = request_data.get("username")
+  password = request_data.get("password")
+  # vcode = request_data.get("vcode")
+
+  # # 做数据的验证
+  # if vcode.lower() != session.get("vcode"):
+  #     return response_message.UserMessage.error("验证码输入错误")
+
+
+  # 实现登录功能
+  password = hashlib.md5(password.encode()).hexdigest()
+
+  # 首先我们需要到redis中查看用户的数据，如果查询不到再到mysql中进行查询
+  result = redis_client.get("user:"+username)
+
+  if result is None:
+    user = User()
+    result = user.find_by_username(username)
+    if len(result) == 1 and result[0].password == password:
+      # 需要进行登录状态的管理
+      session["is_login"] = "true"
+      session["user_id"] = result[0].user_id
+      session["username"] = username
+      session["nickname"] = result[0].nickname
+      session["picture"] = config[env].user_header_image_path+result[0].picture
+
+      response = make_response(response_message.UserMessage.success("登录成功"))
+      response.set_cookie("username", username, max_age=30*24*3600)
+      # response.set_cookie("username",username,max_age=30*24*3600)
+      return response
+    else:
+      return response_message.UserMessage.error("用户名或者是密码错误")
+
+  else:
+    # 把字符串变成一个字典
+    result = eval(result)
+    if result.get("password")==password:
+        response = make_response(response_message.UserMessage.success("登录成功"))
+        return response
+    else:
+      return response_message.UserMessage.error("用户名或者是密码错误")
