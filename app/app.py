@@ -30,3 +30,6 @@ def init_blueprint(app):
 
     from controller.personal import personal
     app.register_blueprint(personal)
+
+    from controller.redis_user import redis_user
+    app.register_blueprint(redis_user)
