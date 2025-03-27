@@ -65,7 +65,7 @@ def feedback_add():
   user_id = session.get("user_id")
 
   # 对内容进行校验
-  if len(content)<5 or len(content)>1000 :
+  if len(content) < 5 or len(content) > 1000 :
     return response_message.FeedbackMessage.other("内容长度不符")
 
   feedback = Feedback()
@@ -74,9 +74,9 @@ def feedback_add():
       user_id=user_id,
       article_id=article_id,
       content=content,
-      ipaddr=ipaddr,
-    )
+      ipaddr=ipaddr)
     result = model_to_json(result)
+    print('————————————————————————————————————————',result)
     return response_message.FeedbackMessage.success("评论成功")
   except Exception as e:
     print(e)

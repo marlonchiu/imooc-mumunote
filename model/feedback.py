@@ -123,6 +123,7 @@ class Feedback(Base):
       db_session.add(feedback)
       # 做一个手动刷新就可以拿到插入的数据的值了
       # db_session.refresh()
+      db_session.commit()
       return feedback
     except Exception as e:
       print(e)
