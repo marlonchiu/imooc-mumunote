@@ -84,17 +84,18 @@ function hiddenWriteAuthorInput(inputId) {
   inputWarp.style.display = 'none'
 }
 
-// // 发布回复评论的评论
-// function writeReply(){
-// 	var content = document.getElementById(baseReplyId).querySelector("textarea").value;
-// 	axios.post("/feedback/reply",{
-// 		article_id:replyArticleId,
-// 		content:content,
-// 		reply_id:feedbackReplyId,
-// 		base_reply_id:baseReplyId
-// 	}).then((res)=>{
-// 		alert(res.data.data);
-// 		window.location.reload();
-// 	})
-//
-// }
+// 发布回复评论的评论
+function writeReply() {
+  var content = document.getElementById(baseReplyId).querySelector('textarea').value
+  axios
+    .post('/feedback/reply', {
+      article_id: replyArticleId,
+      content: content,
+      reply_id: feedbackReplyId,
+      base_reply_id: baseReplyId
+    })
+    .then((res) => {
+      alert(res.data.data)
+      window.location.reload()
+    })
+}
