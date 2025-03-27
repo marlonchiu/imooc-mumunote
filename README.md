@@ -43,14 +43,26 @@ pip install virtualenvwrapper-win
 
 VirtualBox 、Ububtu server、xshell、mysql、Navicat
 
-## 什么是 SQLAlchemy  框架?
+## 什么是 SQLAlchemy 框架?
 
 - SQLAlchemy 是 Python 编程语言下的一款开源软件。
 - SQLAlchemy 提供了 SQL 工具包及对象关系映射(ORM)工具
 - 为高效和高性能的数据库访问而设计，实现了完整的企业级持久模型
 - 安装 SQLAlchemy 命令: `pip install SQLAlchemy`
 
-
 ## 图片验证码
 
-1、安装命令: `pip install pillow`
+1. 安装命令: `pip install pillow`
+
+## Python Web 中间件
+
+说明： gunicorn 实际上是一个仅支持 Unix-like 系统（Linux/macOS）的 WSGI 服务器，在 Windows 上并不能直接使用。
+
+1. 安装命令: `pip install gunicorn`
+2. 启动命令: `gunicorn --worker=2 -b 0.0.0.0:5000 main:app`
+
+在 window 上，需要安装 `waitress`
+```bash
+pip install waitress
+python main.py
+```
