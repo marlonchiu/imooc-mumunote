@@ -46,7 +46,7 @@ def email_code():
 
 
 @redis_user.route("/redis/register",methods=["post"])
-def register():
+def redis_register():
   request_data = json.loads(request.data)
   username = request_data.get("username")
   password = request_data.get("password")
@@ -80,7 +80,7 @@ def register():
 
 
 @redis_user.route("/redis/login",methods=["post"])
-def login():
+def redis_login():
   request_data = json.loads(request.data)
   username = request_data.get("username")
   password = request_data.get("password")
@@ -123,3 +123,29 @@ def login():
         return response
     else:
       return response_message.UserMessage.error("用户名或者是密码错误")
+
+
+@redis_user.route("/redis/login2",methods=["post"])
+def redis_login2():
+  request_data = json.loads(request.data)
+  username = request_data.get("username")
+  password = request_data.get("password")
+  # vcode = request_data.get("vcode")
+
+  # # 做数据的验证
+  # if vcode.lower() != session.get("vcode"):
+  #     return response_message.UserMessage.error("验证码输入错误")
+
+
+  # 实现登录功能
+  password = hashlib.md5(password.encode()).hexdigest()
+
+  # 首先我们需要到redis中查看用户的数据，如果查询不到再到mysql中进行查询
+  redis_password = redis_client.hget("hash_user:"+username, username)
+  print("🚀 ~ redis_password:", redis_password)
+
+  if redis_password == password:
+    response = make_response(response_message.UserMessage.success("登录成功"))
+    return response
+  else:
+    return response_message.UserMessage.error("用户名或者是密码错误")

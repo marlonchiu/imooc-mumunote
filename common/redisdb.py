@@ -47,3 +47,13 @@ def mysql_to_redis_string():
     redis_client.set("user:"+user["username"],str(user))
 
 # mysql_to_redis_string()
+
+def mysql_to_redis_hash():
+  redis_client = redis_connect()
+  result = db_session.query(User).all()
+  # 把这个result需要转换成 [{},{},{}]
+  user_list = model_list(result)
+  for user in user_list:
+    redis_client.hset("hash_user:" + user["username"], user["username"], user["password"])
+
+# mysql_to_redis_hash()
