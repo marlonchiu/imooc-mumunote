@@ -66,3 +66,18 @@ class FeedbackMessage():
     @staticmethod
     def other(data):
         return {"status": 4001, "data": data}
+
+
+# 个人中心的就以5开头
+class PersonalMessage():
+    @staticmethod
+    def success(data):
+        return {"status": 5000,"data": data}
+
+    @staticmethod
+    def error(data):
+        return {"status": 5002, "data": data}
+
+    @staticmethod
+    def other(data):
+        return {"status": 5001, "data": data}

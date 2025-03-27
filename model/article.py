@@ -1,8 +1,11 @@
-from sqlalchemy import Table, or_
+from sqlalchemy import Table, or_, distinct
+
 from common.database import db_connect
 from app.config.config import config
 from app.settings import env
 from model.user import User
+from model.favorite import Favorite
+from model.feedback import Feedback
 
 db_session, Base, engine = db_connect()
 
@@ -68,3 +71,46 @@ class Article(Base):
       ).limit(5)
 
       return result
+
+    # 获取某一个用户所有的不是草稿的文章
+    def get_article_by_user_id(self, user_id):
+      result = db_session.query(Article).filter_by(
+        user_id=user_id,
+        drafted=1
+      ).all()
+
+      return self.app_path(result)
+
+    # 获取某个用户所有的收藏的文章
+    def get_favorite_article_by_user_id(self, user_id):
+      result = db_session.query(Article).join(
+        Favorite,
+        Favorite.article_id == Article.id
+      ).filter(
+        Favorite.user_id == user_id
+      ).order_by(
+        Favorite.create_time.desc()
+      ).all()
+
+      return self.app_path(result)
+
+    # 获取所有用户评论过的文章
+    def get_feedback_article_by_user_id(self,user_id):
+      # 用子查询解决查询结果的问题
+      article_id_list = db_session.query(
+        distinct(Feedback.article_id)
+      ).filter_by(user_id=user_id).subquery()
+      # 再通过文章id的集合查询到所有文章数据
+      result = db_session.query(Article).filter(
+        Article.id.in_(article_id_list)
+      ).all()
+
+      return self.app_path(result)
+
+
+    # 添加文章中所有头部图片的路径
+    def app_path(self, article_list):
+      for article in article_list:
+        article.article_image = config[env].article_header_image_path + article.article_image
+
+      return article_list

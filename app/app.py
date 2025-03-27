@@ -27,3 +27,6 @@ def init_blueprint(app):
 
     from controller.feedback import feedback
     app.register_blueprint(feedback)
+
+    from controller.personal import personal
+    app.register_blueprint(personal)
