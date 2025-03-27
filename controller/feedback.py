@@ -13,6 +13,11 @@ from app.config.ue_config import FEEDBACK_UECONFIG
 # 创建蓝图对象
 feedback = Blueprint('feedback', __name__)
 
+@feedback.before_request
+def before_request():
+  if session.get("user_id") is None or session.get("is_login") != 'true':
+    return {"status": 9999, "data":"您好，请登录"}
+
 @feedback.route("/feedback/list", methods=["get","post"])
 def feedback_list():
   request_data = json.loads(request.data)
