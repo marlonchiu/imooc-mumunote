@@ -8,7 +8,7 @@ import logging
 from app.config.config import config
 from app.settings import env
 from common import response_message
-from common.utils import compress_image
+from common.utils import compress_image, model_to_json
 from model.article import Article
 from model.favorite import Favorite
 from model.user import User
@@ -72,11 +72,26 @@ def article_detail():
 def article_new():
   print("🚀 ~ article_new:")
   user_id = session.get("user_id")
+
+  # 我的草稿相关实现
+  all_drafted = Article().get_all_article_drafted(user_id)
+
   return render_template("new-article.html",
                         label_types=label_types,
                         article_types=article_types,
                         article_tags=article_tags,
+                        all_drafted=all_drafted,
+                        drafted_count=len(all_drafted)
                         )
+
+# 获取某一篇草稿的详情
+@article.route("/article/drafted", methods=["post"])
+def drafted_detail():
+  request_data = json.loads(request.data)
+  result = Article().get_one_article_drafted(request_data.get('id'))
+  # 把结果转成json，然后给前端返回
+  article_drafted = model_to_json(result)
+  return response_message.ArticleMessage.success(article_drafted)
 
 
 def get_article_request_param(request_data):

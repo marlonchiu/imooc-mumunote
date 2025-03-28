@@ -154,3 +154,15 @@ class Article(Base):
       row.article_image = article_image
       db_session.commit()
       return article_id
+
+    # 获取所有我的草稿
+    def get_all_article_drafted(self, user_id):
+      result = db_session.query(Article).filter_by(
+        user_id=user_id,drafted=0).all()
+      return result
+
+    # 获取某一篇草稿的详情
+    def get_one_article_drafted(self, article_id):
+      result = db_session.query(Article).filter_by(
+          id=article_id, drafted=0).first()
+      return result
