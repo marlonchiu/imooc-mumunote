@@ -91,11 +91,11 @@ function createArticle(drafted) {
       title: articleTitle,
       article_content: articleContent,
       article_id: articleId,
-      drafted: drafted
+      drafted: drafted,
       // 下边的几个字段是正式发布的时候才用
-      // label_name: label_name,
-      // article_type: article_type,
-      // article_tag: articleTag
+      label_name: label_name,
+      article_type: article_type,
+      article_tag: articleTag
     })
     .then((res) => {
       articleId = res.data.article_id
