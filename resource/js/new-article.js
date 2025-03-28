@@ -57,19 +57,19 @@ function showArticleTypeList() {
   }
 }
 
-// var isDraftedListShow=true;
-// function showDraftedList(){
-// 	var draftedList = document.querySelector(".drafted-info");
-// 	if(isDraftedListShow==true){
-// 		draftedList.style.display="block";
-// 		isDraftedListShow=false;
-// 	}else{
-// 		draftedList.style.display="none";
-// 		isDraftedListShow=true;
-// 	}
-// }
-//
-//
+// 控制我的草稿的显示与隐藏
+var isDraftedListShow = true
+function showDraftedList() {
+  var draftedList = document.querySelector('.drafted-info')
+  if (isDraftedListShow == true) {
+    draftedList.style.display = 'block'
+    isDraftedListShow = false
+  } else {
+    draftedList.style.display = 'none'
+    isDraftedListShow = true
+  }
+}
+
 // // 声明存储文章内容的变量
 // var articleContent;
 // var articleTitle;
@@ -177,104 +177,102 @@ function selectArticleType(article_type_name_args, article_type_value_args) {
   }
 }
 
-// // 添加文章标签
-// var articleTag=""; //这个就是存储到数据库里的样子
-// var finalTagsList=[]; //这个是用来做中间转换用的
-// var tagNum=0;
-// function addTag(tagName){
-// 	if(finalTagsList.length==3){
-// 		return false;
-// 	}
-// 	// 我们需要定位到change-tags，给它添加子元素
-// 	var changeTags = document.querySelector(".change-tags");
-// 	var childElement = "span";
-// 	var mySpanTag = document.createElement(childElement);
-// 	// <span>Python</span>
-// 	mySpanTag.innerHTML=tagName;
-// 	mySpanTag.setAttribute("data-tag",tagName);
-// 	mySpanTag.addEventListener("click",deleteTag);
-// 	finalTagsList.push(tagName);
-// 	articleTag = finalTagsList.join(",");
-// 	changeTags.appendChild(mySpanTag);
-// 	// 如果标签数量等于了3个，那么就删除掉input标签
-// 	if(finalTagsList.length==3){
-// 		var tagInputElement = document.querySelector(".article-tag-value>input");
-// 		document.querySelector(".article-tag-value").removeChild(tagInputElement)
-// 	}
-// 	// 修改前端标签的数量显示
-// 	document.querySelector(".tag-num").innerHTML=finalTagsList.length;
-// }
-//
-//
-// function deleteTag(){
-// 	var changeTags = document.querySelector(".change-tags");
-// 	var changeSonTags = document.querySelectorAll(".change-tags>span");
-// 	for(var i of changeSonTags.keys()){
-// 		if(changeSonTags[i].getAttribute("data-tag")==this.innerHTML){
-// 			changeTags.removeChild(changeSonTags[i]);
-// 		}
-// 		// 删除完之后，我们需要对数组中的元素进行删除，然后再改变最终的字符串
-// 		for(i in finalTagsList){
-// 			if(finalTagsList[i]==this.innerHTML){
-// 				finalTagsList.splice(i,1);
-// 				articleTag=finalTagsList.join(",");
-// 			}
-// 		}
-// 	}
-// 	/* 如果长度小于3，我们需要判断孩子里边有没有input标签，如果没有，那么就添加 */
-// 	//  <input class="fl" type="text" placeholder="选择下列标签">
-// 	var tagInputElement = document.querySelector(".article-tag-value>input");
-// 	if(tagInputElement==null){
-// 		var articleTagValue=document.querySelector(".article-tag-value");
-// 		tagInputElement = document.createElement("input");
-// 		tagInputElement.className = "fl";
-// 		tagInputElement.type="text";
-// 		tagInputElement.setAttribute("placeholder","选择下列标签")
-// 		articleTagValue.appendChild(tagInputElement);
-// 		// 手动绑定一下input监听事件
-// 		addInputEventListenerFunc();
-// 	}
-//
-// 	// 修改前端的标签数量
-// 	document.querySelector(".tag-num").innerHTML=finalTagsList.length;
-//
-// }
-//
-// // 修复一下input标签删除后，再重建没有监听input事件的bug
-// var addInputEventListenerFunc;
-//
-// window.onload=function(){
-// 	function addInputEventListener(){
-// 		var article_tags = window.globalArticleTags;
-// 		console.log(article_tags);
-// 		var inputElement = document.querySelector(".article-tag-value>input");
-// 		inputElement.addEventListener("input",function(event){
-// 			var resetArticleTagList=[];
-// 			var tag_value = inputElement.value;
-// 			console.log(tag_value);
-// 			// 动态渲染，重新筛选标签
-// 			for(var i in article_tags){
-// 				if(article_tags[i].search(tag_value)!=-1){
-// 					resetArticleTagList.push(article_tags[i]);
-// 				}
-// 			}
-// 			/* 再次渲染页面 */
-// 			var articleTagListElement = document.querySelector(".article-tag-list");
-// 			// 先删除掉所有的孩子，然后再用新的列表内容进行标签渲染
-// 			articleTagListElement.innerHTML="";
-// 			// <span onclick="addTag('{{article_tag}}')">{{article_tag}}</span>
-// 			for(var i in resetArticleTagList){
-// 				var element = document.createElement("span");
-// 				element.setAttribute("onclick","addTag('"+resetArticleTagList[i]+"')")
-// 				element.innerHTML=resetArticleTagList[i];
-// 				articleTagListElement.appendChild(element);
-// 			}
-// 		})
-// 	}
-// 	addInputEventListenerFunc = addInputEventListener;
-// 	addInputEventListenerFunc();
-// }
-//
+// 添加文章标签
+var articleTag = '' //这个就是存储到数据库里的样子
+var finalTagsList = [] //这个是用来做中间转换用的
+var tagNum = 0
+function addTag(tagName) {
+  if (finalTagsList.length == 3) {
+    return false
+  }
+  // 我们需要定位到change-tags，给它添加子元素
+  var changeTags = document.querySelector('.change-tags')
+  var childElement = 'span'
+  var mySpanTag = document.createElement(childElement)
+  // <span>Python</span>
+  mySpanTag.innerHTML = tagName
+  mySpanTag.setAttribute('data-tag', tagName)
+  mySpanTag.addEventListener('click', deleteTag)
+  finalTagsList.push(tagName)
+  articleTag = finalTagsList.join(',')
+  changeTags.appendChild(mySpanTag)
+  // 如果标签数量等于了3个，那么就删除掉input标签
+  if (finalTagsList.length == 3) {
+    var tagInputElement = document.querySelector('.article-tag-value>input')
+    document.querySelector('.article-tag-value').removeChild(tagInputElement)
+  }
+  // 修改前端标签的数量显示
+  document.querySelector('.tag-num').innerHTML = finalTagsList.length
+}
+
+function deleteTag() {
+  var changeTags = document.querySelector('.change-tags')
+  var changeSonTags = document.querySelectorAll('.change-tags>span')
+  for (var i of changeSonTags.keys()) {
+    if (changeSonTags[i].getAttribute('data-tag') == this.innerHTML) {
+      changeTags.removeChild(changeSonTags[i])
+    }
+    // 删除完之后，我们需要对数组中的元素进行删除，然后再改变最终的字符串
+    for (i in finalTagsList) {
+      if (finalTagsList[i] == this.innerHTML) {
+        finalTagsList.splice(i, 1)
+        articleTag = finalTagsList.join(',')
+      }
+    }
+  }
+  /* 如果长度小于3，我们需要判断孩子里边有没有input标签，如果没有，那么就添加 */
+  //  <input class="fl" type="text" placeholder="选择下列标签">
+  var tagInputElement = document.querySelector('.article-tag-value>input')
+  if (tagInputElement == null) {
+    var articleTagValue = document.querySelector('.article-tag-value')
+    tagInputElement = document.createElement('input')
+    tagInputElement.className = 'fl'
+    tagInputElement.type = 'text'
+    tagInputElement.setAttribute('placeholder', '选择下列标签')
+    articleTagValue.appendChild(tagInputElement)
+    // 手动绑定一下input监听事件
+    addInputEventListenerFunc()
+  }
+
+  // 修改前端的标签数量
+  document.querySelector('.tag-num').innerHTML = finalTagsList.length
+}
+
+// 修复一下input标签删除后，再重建没有监听input事件的bug
+var addInputEventListenerFunc
+
+window.onload = function () {
+  function addInputEventListener() {
+    var article_tags = window.globalArticleTags
+    console.log(article_tags)
+    var inputElement = document.querySelector('.article-tag-value>input')
+    inputElement.addEventListener('input', function (event) {
+      var resetArticleTagList = []
+      var tag_value = inputElement.value
+      console.log(tag_value)
+      // 动态渲染，重新筛选标签
+      for (var i in article_tags) {
+        if (article_tags[i].search(tag_value) != -1) {
+          resetArticleTagList.push(article_tags[i])
+        }
+      }
+      /* 再次渲染页面 */
+      var articleTagListElement = document.querySelector('.article-tag-list')
+      // 先删除掉所有的孩子，然后再用新的列表内容进行标签渲染
+      articleTagListElement.innerHTML = ''
+      // <span onclick="addTag('{{article_tag}}')">{{article_tag}}</span>
+      for (var i in resetArticleTagList) {
+        var element = document.createElement('span')
+        element.setAttribute('onclick', "addTag('" + resetArticleTagList[i] + "')")
+        element.innerHTML = resetArticleTagList[i]
+        articleTagListElement.appendChild(element)
+      }
+    })
+  }
+  addInputEventListenerFunc = addInputEventListener
+  addInputEventListenerFunc()
+}
+
 // // 在ue中显示我的草稿内容
 // function toDrafted(draftedId){
 // 	/* 一个是把title的值给放上去 */
