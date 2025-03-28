@@ -70,43 +70,6 @@ function showDraftedList() {
   }
 }
 
-// // 声明存储文章内容的变量
-// var articleContent;
-// var articleTitle;
-// var articleId=-1;
-// // 选择投递的栏目
-// var label_name=""
-// var article_type=""
-// // 创建文章或者是文章的草稿存储
-// function createArticle(drafted){
-// 	//  获取文章的标题
-// 	articleTitle = document.querySelector(".article-header").value;
-// 	// 获取文章的内容
-// 	articleContent = ue.getContent();
-//
-// 	// 向后端发送请求
-// 	axios.post("/article/save",{
-// 		// 这是草稿存储的逻辑
-// 		title:articleTitle,
-// 		article_content:articleContent,
-// 		article_id:articleId,
-// 		drafted:drafted,
-// 		// 下边的几个字段是正式发布的时候才用
-// 		label_name:label_name,
-// 		article_type:article_type,
-// 		article_tag:articleTag
-// 	}).then((res)=>{
-// 		articleId = res.data.article_id
-// 		alert(res.data.data)
-// 		// 如果是文章发布的逻辑，那么我们需要默认跳转到文章详情页面
-// 		if(drafted==1){
-// 			setTimeout(function(){
-// 				location.href="/detail?article_id="+articleId;
-// 			},1000);
-// 		}
-// 	})
-// }
-//
 // // 添加事件监听，上传文章头部图片
 // // 是页面加载完毕后立即执行。要不然就会报找不到addEnevtListener的错误
 // window.onload=function(){
@@ -271,6 +234,45 @@ window.onload = function () {
   }
   addInputEventListenerFunc = addInputEventListener
   addInputEventListenerFunc()
+}
+
+// 声明存储文章内容的变量
+var articleContent
+var articleTitle
+var articleId = -1
+// 选择投递的栏目
+var label_name = ''
+var article_type = ''
+// 创建文章或者是文章的草稿存储
+function createArticle(drafted) {
+  //  获取文章的标题
+  articleTitle = document.querySelector('.article-header').value
+  // 获取文章的内容
+  articleContent = ue.getContent()
+
+  // 向后端发送请求
+  axios
+    .post('/article/save', {
+      // 这是草稿存储的逻辑
+      title: articleTitle,
+      article_content: articleContent,
+      article_id: articleId,
+      drafted: drafted,
+      // 下边的几个字段是正式发布的时候才用
+      // label_name: label_name,
+      // article_type: article_type,
+      // article_tag: articleTag
+    })
+    .then((res) => {
+      articleId = res.data.article_id
+      alert(res.data.data)
+      // 如果是文章发布的逻辑，那么我们需要默认跳转到文章详情页面
+      if (drafted == 1) {
+        setTimeout(function () {
+          location.href = '/detail?article_id=' + articleId
+        }, 1000)
+      }
+    })
 }
 
 // // 在ue中显示我的草稿内容
