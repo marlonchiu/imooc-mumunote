@@ -2,7 +2,7 @@ import json
 import time
 import random
 
-from flask import Blueprint, request, render_template, session, jsonify
+from flask import Blueprint, request, render_template, session, jsonify, make_response, url_for
 import logging
 
 from app.config.config import config
@@ -18,6 +18,17 @@ article = Blueprint("article",__name__)
 label_types = config[env].label_types
 article_types = config[env].article_types
 article_tags = config[env].article_tags
+
+
+@article.before_request
+def article_before_request():
+  url = request.path
+  is_login = session.get("is_login")
+  if url.startswith("/article") and "new" in url and is_login != 'true':
+    response = make_response("登录重定向",302)
+    response.headers["Location"] = url_for("index.home")
+    return response
+
 
 @article.route("/detail", methods=["GET"])
 def article_detail():
