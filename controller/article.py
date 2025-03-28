@@ -1,3 +1,4 @@
+import json
 
 from flask import Blueprint, request, render_template, session
 
@@ -60,3 +61,50 @@ def article_new():
                         label_types=label_types,
                         article_types=article_types,
                         article_tags=article_tags,)
+
+
+def get_article_request_param(request_data):
+  user = User().find_by_user_id(session.get("user_id"))
+  title = request_data.get("title")
+  article_content = request_data.get("article_content")
+  return user, title, article_content
+
+# 草稿或文章存储
+@article.route("/article/save",methods=["post"])
+def article_save():
+  request_data = json.loads(request.data)
+  # 我们根据article_id来判断是不是第一次保存，如果没有这个id就存储为草稿，如果有那么就文章发布
+  # 其实文章发布就是文章更新
+  article_id = request_data.get("article_id")
+  # 取出是否是草稿
+  drafted = request_data.get("drafted")
+  # 必须让前端传一个article_id，那么这个值如果是-1我们就认为是草稿
+  if article_id == -1 and drafted == 0:
+    user, title, article_content = get_article_request_param(request_data)
+    if title == "":
+      return response_message.ArticleMessage.other("请输入文章头信息")
+    # 存储草稿的时候一定要返回一个article_id回来
+    article_id = Article().insert_article(user.user_id,title,article_content,drafted)
+    return response_message.ArticleMessage.save_success(article_id, "草稿存储成功")
+
+  elif article_id > -1:
+    user, title, article_content = get_article_request_param(request_data)
+    if title == "":
+        return response_message.ArticleMessage.other("请输入文章头信息")
+    # 图片信息就不在这里获取了，当用户点击上传头像的时候，这个头像信息就应该已经更新到数据库里了
+    # 所以图片上传这个动作应该发生在文章发布的前边
+    label_name = request_data.get("label_name")
+    article_tag = request_data.get("article_tag")
+    article_type = request_data.get("article_type")
+
+    article_id = Article().update_article(
+      article_id=article_id,
+      title=title,
+      article_content=article_content,
+      drafted=drafted,
+      label_name=label_name,
+      article_tag=article_tag,
+      article_type=article_type
+    )
+
+    return response_message.ArticleMessage.save_success(article_id, "发布文章成功")
