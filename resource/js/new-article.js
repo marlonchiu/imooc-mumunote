@@ -282,21 +282,20 @@ function addInputEventListener() {
   })
 }
 
+// 在ue中显示我的草稿内容
+function toDrafted(draftedId) {
+  /* 一个是把title的值给放上去 */
+  var articleHeader = document.querySelector('.article-header')
 
-
-// // 在ue中显示我的草稿内容
-// function toDrafted(draftedId){
-// 	/* 一个是把title的值给放上去 */
-// 	var articleHeader = document.querySelector(".article-header");
-//
-// 	// 把article_content的内容放上去
-// 	axios.post("/article/drafted",{
-// 		id:draftedId
-// 	}).then((res)=>{
-// 		articleHeader.value = res.data.data.title;
-// 		ue.body.innerHTML=res.data.data.article_content;
-// 		// 千万不要忘记我们此时编辑的是哪个草稿
-// 		articleId = res.data.data.id;
-// 	})
-//
-// }
+  // 把article_content的内容放上去
+  axios
+    .post('/article/drafted', {
+      id: draftedId
+    })
+    .then((res) => {
+      articleHeader.value = res.data.data.title
+      ue.body.innerHTML = res.data.data.article_content
+      // 千万不要忘记我们此时编辑的是哪个草稿
+      articleId = res.data.data.id
+    })
+}
