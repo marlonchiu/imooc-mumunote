@@ -15,6 +15,28 @@ class Config(object):
     # 配置头像存储路径
     user_header_image_path = "/images/headers/"
 
+    label_types = {
+      "recommend": {"name": "请选择需要投递的栏目", "selected": "selected"},
+      "auto_test": {"name": "自动化测试", "selected": "no-selected"},
+      "python": {"name": "Python", "selected": "no-selected"},
+      "java": {"name": "Java", "selected": "no-selected"},
+      "function_test": {"name": "功能测试", "selected": "no-selected"},
+      "perf_test": {"name": "性能测试", "selected": "no-selected"},
+      "funny": {"name": "幽默段子", "selected": "no-selected"},
+    }
+
+    article_types = {
+      "recommend": {"name": "请选择", "selected": "selected"},
+      "first": {"name": "首发", "selected": "no-selected"},
+      "original": {"name": "原创", "selected": "no-selected"},
+      "other": {"name": "其它", "selected": "no-selected"},
+    }
+    article_tags = [
+        "Html5", "Angular", "JS", "CSS3", "Sass/Less",
+        "JAVA", "Python", "Go", "C++", "C#", "MySQL",
+        "Oracle", "MongoDB", "Android", "Unity 3", "DCocos2d-x"
+      ]
+
     # 配置redis
     REDIS_HOST = '127.0.0.1'
     REDIS_PORT = 6379

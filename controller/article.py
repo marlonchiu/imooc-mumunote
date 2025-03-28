@@ -10,6 +10,9 @@ from model.user import User
 from model.feedback import Feedback
 
 article = Blueprint("article",__name__)
+label_types = config[env].label_types
+article_types = config[env].article_types
+article_tags = config[env].article_tags
 
 @article.route("/detail", methods=["GET"])
 def article_detail():
@@ -47,3 +50,13 @@ def article_detail():
                         feedback_data_list=feedback_data_list,
                         feedback_count=feedback_count,
                         )
+
+
+@article.route("/article/new")
+def article_new():
+  print("🚀 ~ article_new:")
+  # user_id = session.get("user_id")
+  return render_template("new-article.html",
+                        label_types=label_types,
+                        article_types=article_types,
+                        article_tags=article_tags,)

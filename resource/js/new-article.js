@@ -1,31 +1,30 @@
-// var ue = UE.getEditor('editor', {
-// 		        // ... 更多配置
-// 				shortcutMenu: false,
-// 				elementPathEnabled : false,
-// 				wordCount:false,
-// 				autoHeightEnabled:false,
-// 				// 初始化编辑器宽度,默认 1000
-// 				initialFrameWidth:800,
-// 				// 初始化编辑器高度,默认 320
-// 				initialFrameHeight:800,
-// 				serverUrl:"http://127.0.0.1:5000/feedback",
-// 				toolbars: [
-// 				  [
-// 					   "insertcode",
-// 					    "bold",         // 加粗
-// 					    "italic",       // 斜体
-// 					    "insertimage",
-// 						"link",
-// 					    "insertorderedlist",   // 有序列表
-// 					    "insertunorderedlist", // 无序列表
-// 					    "undo",         // 撤销
-// 					    "redo",         // 重做
-// 					    "emotion",             // 表情
-// 				  ]
-// 					  ]
-// 		    });
-//
-//
+var ue = UE.getEditor('editor', {
+  // ... 更多配置
+  shortcutMenu: false,
+  elementPathEnabled: false,
+  wordCount: false,
+  autoHeightEnabled: false,
+  // 初始化编辑器宽度,默认 1000
+  initialFrameWidth: 800,
+  // 初始化编辑器高度,默认 320
+  initialFrameHeight: 800,
+  serverUrl: 'http://127.0.0.1:5000/feedback',
+  toolbars: [
+    [
+      'insertcode',
+      'bold', // 加粗
+      'italic', // 斜体
+      'insertimage',
+      'link',
+      'insertorderedlist', // 有序列表
+      'insertunorderedlist', // 无序列表
+      'undo', // 撤销
+      'redo', // 重做
+      'emotion' // 表情
+    ]
+  ]
+})
+
 // // 控制投递的栏目菜单栏的显示与隐藏
 // var isArticleLabelListShow=true;
 //

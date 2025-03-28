@@ -13,7 +13,7 @@ if __name__ == '__main__':
     logging.debug("我是debug的日志")
 
     # 选择1：开发环境使用 Flask 开发服务器
-    # app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
 
     # 选择2：使用 waitress（稳定、简单）
     # serve(app, host='0.0.0.0', port=5000)
@@ -26,6 +26,6 @@ if __name__ == '__main__':
     #     server.stop()
 
     # 选择4：使用 Tornado（高性能、异步支持）
-    http_server = HTTPServer(WSGIContainer(app))
-    http_server.listen(5000)
-    IOLoop.instance().start()
+    # http_server = HTTPServer(WSGIContainer(app))
+    # http_server.listen(5000)
+    # IOLoop.instance().start()
