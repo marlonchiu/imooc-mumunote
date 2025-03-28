@@ -138,7 +138,7 @@ function randomHeaderImage() {
   var formData = new FormData()
   formData.append('article_id', articleId)
   // 把数据提交给后台
-  axios.post('/article/random/header/image', formData).then((res) => {
+  axios.post('/article/random/article_header_image', formData).then((res) => {
     var image = document.querySelector('.upload-header-image label img')
     image.setAttribute('src', res.data.url)
     image.style.width = '130px'

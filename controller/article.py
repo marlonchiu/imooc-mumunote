@@ -1,5 +1,6 @@
 import json
 import time
+import random
 
 from flask import Blueprint, request, render_template, session, jsonify
 import logging
@@ -140,4 +141,23 @@ def upload_article_header_image():
   result['url'] = "/upload/" + newname
   result["title"] = filename
   result["original"] = filename
+  return jsonify(result)
+
+
+# 随机文章头部图片
+@article.route("/article/random/article_header_image", methods=["POST"])
+def random_article_header_image():
+  name = random.randint(1,100)
+  newname = str(name) + ".jpg"
+
+  # 更新数据库
+  article_id = request.form.get("article_id")
+  Article().update_article_header_image(article_id, newname)
+
+  # 构造响应数据
+  result = {}
+  result["state"] = "SUCCESS"
+  result['url'] = "/upload/" + newname
+  result["title"] = newname
+  result["original"] = newname
   return jsonify(result)
