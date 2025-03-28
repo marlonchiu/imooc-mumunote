@@ -147,3 +147,10 @@ class Article(Base):
       row.article_type = article_type
       db_session.commit()
       return article_id
+
+    # 更新文章封面
+    def update_article_header_image(self,article_id, article_image):
+      row = db_session.query(Article).filter_by(id=article_id).first()
+      row.article_image = article_image
+      db_session.commit()
+      return article_id

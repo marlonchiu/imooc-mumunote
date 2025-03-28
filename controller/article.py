@@ -1,10 +1,13 @@
 import json
+import time
 
-from flask import Blueprint, request, render_template, session
+from flask import Blueprint, request, render_template, session, jsonify
+import logging
 
 from app.config.config import config
 from app.settings import env
 from common import response_message
+from common.utils import compress_image
 from model.article import Article
 from model.favorite import Favorite
 from model.user import User
@@ -56,11 +59,12 @@ def article_detail():
 @article.route("/article/new")
 def article_new():
   print("🚀 ~ article_new:")
-  # user_id = session.get("user_id")
+  user_id = session.get("user_id")
   return render_template("new-article.html",
                         label_types=label_types,
                         article_types=article_types,
-                        article_tags=article_tags,)
+                        article_tags=article_tags,
+                        )
 
 
 def get_article_request_param(request_data):
@@ -108,3 +112,32 @@ def article_save():
     )
 
     return response_message.ArticleMessage.save_success(article_id, "发布文章成功")
+
+
+# 上传文章头部图片
+@article.route("/article/upload/article_header_image", methods=["POST"])
+def upload_article_header_image():
+  # 获取前端图片文件
+  f = request.files.get("header-image-file")
+  filename = f.filename
+
+  # 文件的后缀名
+  suffix = filename.split(".")[-1]
+  newname = time.strftime("%Y%m%d_%H%M%S." + suffix)
+  newname = "article-header-" + newname
+  f.save("resource/upload/" + newname)
+  # 大图片压缩
+  source = dest = "resource/upload/" + newname
+  compress_image(source, dest, 1200)
+
+  # 更新数据库
+  article_id = request.form.get("article_id")
+  Article().update_article_header_image(article_id, newname)
+
+  # 构造响应数据
+  result = {}
+  result["state"] = "SUCCESS"
+  result['url'] = "/upload/" + newname
+  result["title"] = filename
+  result["original"] = filename
+  return jsonify(result)
