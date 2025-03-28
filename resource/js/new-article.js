@@ -111,9 +111,10 @@ function createArticle(drafted) {
 
 // 添加事件监听，上传文章头部图片
 // 是页面加载完毕后立即执行。要不然就会报找不到addEventListener的错误
-window.onload = function () {
+
+function articleHeaderImageFun() {
   var articleHeaderImage = document.querySelector('#xFile')
-  console.log("🚀 ~ articleHeaderImage:", articleHeaderImage)
+  console.log('🚀 ~ articleHeaderImage:', articleHeaderImage)
   articleHeaderImage.addEventListener('change', function (event) {
     console.log('🚀 ~ change:', event)
     // 拿到用户上传的图片
@@ -132,6 +133,15 @@ window.onload = function () {
       image.style.height = '130px'
     })
   })
+}
+
+window.onload = function () {
+  // 添加input标签的监听事件
+  addInputEventListenerFunc = addInputEventListener
+  addInputEventListenerFunc()
+
+  // 添加事件监听，上传文章头部图片
+  articleHeaderImageFun()
 }
 //  文章头图随机图片
 function randomHeaderImage() {
@@ -244,37 +254,35 @@ function deleteTag() {
 // 修复一下input标签删除后，再重建没有监听input事件的bug
 var addInputEventListenerFunc
 
-// window.onload = function () {
-//   function addInputEventListener() {
-//     var article_tags = window.globalArticleTags
-//     console.log(article_tags)
-//     var inputElement = document.querySelector('.article-tag-value>input')
-//     inputElement.addEventListener('input', function (event) {
-//       var resetArticleTagList = []
-//       var tag_value = inputElement.value
-//       console.log(tag_value)
-//       // 动态渲染，重新筛选标签
-//       for (var i in article_tags) {
-//         if (article_tags[i].search(tag_value) != -1) {
-//           resetArticleTagList.push(article_tags[i])
-//         }
-//       }
-//       /* 再次渲染页面 */
-//       var articleTagListElement = document.querySelector('.article-tag-list')
-//       // 先删除掉所有的孩子，然后再用新的列表内容进行标签渲染
-//       articleTagListElement.innerHTML = ''
-//       // <span onclick="addTag('{{article_tag}}')">{{article_tag}}</span>
-//       for (var i in resetArticleTagList) {
-//         var element = document.createElement('span')
-//         element.setAttribute('onclick', "addTag('" + resetArticleTagList[i] + "')")
-//         element.innerHTML = resetArticleTagList[i]
-//         articleTagListElement.appendChild(element)
-//       }
-//     })
-//   }
-//   addInputEventListenerFunc = addInputEventListener
-//   addInputEventListenerFunc()
-// }
+function addInputEventListener() {
+  var article_tags = window.globalArticleTags
+  console.log(article_tags)
+  var inputElement = document.querySelector('.article-tag-value>input')
+  inputElement.addEventListener('input', function (event) {
+    var resetArticleTagList = []
+    var tag_value = inputElement.value
+    console.log(tag_value)
+    // 动态渲染，重新筛选标签
+    for (var i in article_tags) {
+      if (article_tags[i].search(tag_value) != -1) {
+        resetArticleTagList.push(article_tags[i])
+      }
+    }
+    /* 再次渲染页面 */
+    var articleTagListElement = document.querySelector('.article-tag-list')
+    // 先删除掉所有的孩子，然后再用新的列表内容进行标签渲染
+    articleTagListElement.innerHTML = ''
+    // <span onclick="addTag('{{article_tag}}')">{{article_tag}}</span>
+    for (var i in resetArticleTagList) {
+      var element = document.createElement('span')
+      element.setAttribute('onclick', "addTag('" + resetArticleTagList[i] + "')")
+      element.innerHTML = resetArticleTagList[i]
+      articleTagListElement.appendChild(element)
+    }
+  })
+}
+
+
 
 // // 在ue中显示我的草稿内容
 // function toDrafted(draftedId){
