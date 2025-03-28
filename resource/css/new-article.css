@@ -286,6 +286,8 @@ body {
   font-size: 12px;
   border-radius: 12px;
   margin-left: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
 }
 /* 两个按钮的样式 */
 .saveAndCancelButton {

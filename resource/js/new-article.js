@@ -25,37 +25,38 @@ var ue = UE.getEditor('editor', {
   ]
 })
 
-// // 控制投递的栏目菜单栏的显示与隐藏
-// var isArticleLabelListShow=true;
-//
-// function showArticleLabelList(){
-// 	var labelList = document.querySelector(".article-label-list");
-// 	var labelValue = document.querySelector(".article-label-value");
-// 	if(isArticleLabelListShow==true){
-// 		labelList.style.display="block";
-// 		isArticleLabelListShow=false;
-// 		labelValue.style.boxShadow="0 0 0 4px rgb(28 31 33 / 10%)";
-// 	}else{
-// 		labelList.style.display="none";
-// 		isArticleLabelListShow=true;
-// 		labelValue.style.boxShadow="";
-// 	}
-// }
-//
-// var isArticleTypeListShow=true;
-// function showArticleTypeList(){
-// 	var typeList = document.querySelector(".article-type-list");
-// 	var typeValue = document.querySelector(".article-type-value");
-// 	if(isArticleTypeListShow==true){
-// 		typeList.style.display="block";
-// 		isArticleTypeListShow=false;
-// 		typeValue.style.boxShadow="0 0 0 4px rgb(28 31 33 / 10%)";
-// 	}else{
-// 		typeList.style.display="none";
-// 		isArticleTypeListShow=true;
-// 		typeValue.style.boxShadow="";
-// 	}
-// }
+// 控制投递的栏目菜单栏的显示与隐藏
+var isArticleLabelListShow = true
+function showArticleLabelList() {
+  var labelList = document.querySelector('.article-label-list')
+  var labelValue = document.querySelector('.article-label-value')
+  if (isArticleLabelListShow == true) {
+    labelList.style.display = 'block'
+    isArticleLabelListShow = false
+    labelValue.style.boxShadow = '0 0 0 4px rgb(28 31 33 / 10%)'
+  } else {
+    labelList.style.display = 'none'
+    isArticleLabelListShow = true
+    labelValue.style.boxShadow = ''
+  }
+}
+
+// 控制文章类型菜单栏的显示与隐藏
+var isArticleTypeListShow = true
+function showArticleTypeList() {
+  var typeList = document.querySelector('.article-type-list')
+  var typeValue = document.querySelector('.article-type-value')
+  if (isArticleTypeListShow == true) {
+    typeList.style.display = 'block'
+    isArticleTypeListShow = false
+    typeValue.style.boxShadow = '0 0 0 4px rgb(28 31 33 / 10%)'
+  } else {
+    typeList.style.display = 'none'
+    isArticleTypeListShow = true
+    typeValue.style.boxShadow = ''
+  }
+}
+
 // var isDraftedListShow=true;
 // function showDraftedList(){
 // 	var draftedList = document.querySelector(".drafted-info");
@@ -141,41 +142,41 @@ var ue = UE.getEditor('editor', {
 // 	})
 // }
 //
-// // 选择投递的栏目
-// function selectLabelName(label_name_args,label_value_args){
-// 	label_name = label_name_args;
-// 	var firstChildSpan = document.querySelector(".article-label-value>span:first-child");
-// 	firstChildSpan.innerHTML = label_value_args;
-// 	var lis = document.querySelectorAll(".article-label-list>div>li");
-// 	// 注意这里的for循环，如果我们使用了in那么就会多遍历出来一些属性，因为in会把lis当成对象来遍历
-// 	// 那么就把其它属性也循环出来了
-// 	for(i of lis.keys()){
-// 		// console.log(i);
-// 		lis[i].className="no-selected";
-// 		if(lis[i].getAttribute("data-label-type") == label_name_args){
-// 			lis[i].className="selected";
-// 		}
-// 	}
-//
-// }
-//
-// // 选择文章的类型
-// function selectArticleType(article_type_name_args,article_type_value_args){
-// 	article_type = article_type_name_args;
-// 	var firstChildSpan = document.querySelector(".article-type-value>span:first-child");
-// 	firstChildSpan.innerHTML = article_type_value_args;
-// 	var lis = document.querySelectorAll(".article-type-list>div>li");
-// 	// 注意这里的for循环，如果我们使用了in那么就会多遍历出来一些属性，因为in会把lis当成对象来遍历
-// 	// 那么就把其它属性也循环出来了
-// 	for(i of lis.keys()){
-// 		// console.log(i);
-// 		lis[i].className="no-selected";
-// 		if(lis[i].getAttribute("data-article-type") == article_type_name_args){
-// 			lis[i].className="selected";
-// 		}
-// 	}
-// }
-//
+
+// 选择投递的栏目
+function selectLabelName(label_name_args, label_value_args) {
+  label_name = label_name_args
+  var firstChildSpan = document.querySelector('.article-label-value>span:first-child')
+  firstChildSpan.innerHTML = label_value_args
+  var lis = document.querySelectorAll('.article-label-list>div>li')
+  // 注意这里的for循环，如果我们使用了in那么就会多遍历出来一些属性，因为in会把lis当成对象来遍历
+  // 那么就把其它属性也循环出来了
+  for (i of lis.keys()) {
+    // console.log(i);
+    lis[i].className = 'no-selected'
+    if (lis[i].getAttribute('data-label-type') == label_name_args) {
+      lis[i].className = 'selected'
+    }
+  }
+}
+
+// 选择文章的类型
+function selectArticleType(article_type_name_args, article_type_value_args) {
+  article_type = article_type_name_args
+  var firstChildSpan = document.querySelector('.article-type-value>span:first-child')
+  firstChildSpan.innerHTML = article_type_value_args
+  var lis = document.querySelectorAll('.article-type-list>div>li')
+  // 注意这里的for循环，如果我们使用了in那么就会多遍历出来一些属性，因为in会把lis当成对象来遍历
+  // 那么就把其它属性也循环出来了
+  for (i of lis.keys()) {
+    // console.log(i);
+    lis[i].className = 'no-selected'
+    if (lis[i].getAttribute('data-article-type') == article_type_name_args) {
+      lis[i].className = 'selected'
+    }
+  }
+}
+
 // // 添加文章标签
 // var articleTag=""; //这个就是存储到数据库里的样子
 // var finalTagsList=[]; //这个是用来做中间转换用的
